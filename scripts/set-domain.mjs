@@ -36,7 +36,13 @@ for (const page of pages) {
   let html = readFileSync(path, 'utf8');
   const before = html;
 
-  const canonical = page === 'index.html' ? `${origin}/` : `${origin}/${page}`;
+  // vercel.json sets cleanUrls, so /privacy.html 308s to /privacy. Canonical and
+  // og:url must name the final URL, never one that redirects.
+  const cleanUrls = /"cleanUrls"\s*:\s*true/.test(
+    readFileSync(join(root, 'vercel.json'), 'utf8').toString()
+  );
+  const slug = cleanUrls ? page.replace(/\.html$/, '') : page;
+  const canonical = page === 'index.html' ? `${origin}/` : `${origin}/${slug}`;
 
   // og:image -> absolute
   html = html.replace(

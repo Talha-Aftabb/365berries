@@ -211,6 +211,20 @@ which transmits the visitor's IP to Google. German courts have treated this as a
 issue. The cookie page discloses it. If the client would rather it not happen at all, the
 fonts can be self-hosted — roughly an hour of work, and it also makes the site load faster.
 
+
+### Contact links (mailto: / tel:)
+
+`mailto:` and `tel:` links do nothing at all when the operating system has no handler
+registered — no error, no dialog, just a dead click. That is common on desktops without a
+mail client configured, and inside in-app browsers (LinkedIn, WhatsApp). On a B2B site whose
+primary CTA is "Email David", that is a lost lead.
+
+Every `mailto:`/`tel:` link therefore also shows a toast with the address and copies it to
+the clipboard. The `href` is left intact, so a real mail client still opens where one exists.
+The toast appears **synchronously** — the Clipboard API can reject *or hang* when the
+document is not focused, so the feedback deliberately does not wait on it. If the copy
+succeeds the toast upgrades to "Copied to clipboard — …".
+
 ## 7. Design system
 
 | | |

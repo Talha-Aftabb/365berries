@@ -534,6 +534,69 @@
 
   })();
 
+  /* ---------------------------------------------------------------- 16b. CONTACT LINKS */
+  // mailto:/tel: do nothing at all when the OS has no handler registered — common
+  // on desktops without a mail client, and inside in-app browsers. The link is left
+  // intact (it still works where a handler exists), but we always copy the address
+  // and confirm it, so the click never appears to do nothing.
+  (function contactLinks() {
+    var links = $$('a[href^="mailto:"], a[href^="tel:"]');
+    if (!links.length) return;
+
+    var toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.setAttribute('role', 'status');
+    toast.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="m5 13 4 4L19 7"/></svg><span></span>';
+    document.body.appendChild(toast);
+    var label = toast.querySelector('span');
+    var timer = null;
+
+    function show(value, copied) {
+      label.innerHTML = '';
+      if (copied) label.appendChild(document.createTextNode((t('toast.copied') || 'Copied') + ' — '));
+      var b = document.createElement('b');
+      b.textContent = value;
+      label.appendChild(b);
+      toast.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(function () { toast.classList.remove('show'); }, 4000);
+    }
+
+    function copy(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+      // Fallback for non-secure contexts (e.g. opening the file directly)
+      return new Promise(function (resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        ok ? resolve() : reject();
+      });
+    }
+
+    links.forEach(function (a) {
+      a.addEventListener('click', function () {
+        // Never preventDefault — let the mail/phone client open if there is one.
+        var value = a.getAttribute('href').replace(/^(mailto:|tel:)/i, '').split('?')[0];
+        // Show the address straight away. The clipboard API can reject *or hang*
+        // when the document isn't focused, so feedback must not depend on it —
+        // seeing the address is the point; copying is the bonus.
+        show(value, false);
+        copy(value).then(function () { show(value, true); }, function () {});
+      });
+    });
+  })();
+
   /* ---------------------------------------------------------------- 17. LANGUAGE INIT */
   // Last, so the calendar, quote dots and split headings all exist to translate.
   initLang();

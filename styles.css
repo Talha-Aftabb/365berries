@@ -624,6 +624,7 @@ body.loaded .hero__stats{opacity:1;transform:none}
 .orig__map svg{width:100%;height:auto}
 .map-land{fill:currentColor;opacity:.13}
 .map-pin{cursor:pointer}
+.map-pin .hit{fill:transparent}          /* generous target — the dot itself is 5px */
 .map-pin circle.core{fill:var(--rasp-500);transition:r .3s var(--e-out)}
 .map-pin circle.halo{fill:var(--rasp-500);opacity:.28;transform-box:fill-box;transform-origin:center;animation:ping 2.8s var(--e-out) infinite}
 .map-pin:nth-of-type(2) circle.halo{animation-delay:-.5s}
@@ -631,9 +632,18 @@ body.loaded .hero__stats{opacity:1;transform:none}
 .map-pin:nth-of-type(4) circle.halo{animation-delay:-1.5s}
 .map-pin:nth-of-type(5) circle.halo{animation-delay:-2s}
 @keyframes ping{0%{transform:scale(.6);opacity:.4}70%,100%{transform:scale(3.2);opacity:0}}
-.map-pin:hover circle.core{r:7}
-.map-pin text{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;fill:var(--fg);opacity:0;transition:opacity .3s}
-.map-pin:hover text{opacity:1}
+.map-pin:hover circle.core,.map-pin:focus-visible circle.core{r:7}
+/* Labels sit over the dark globe AND the cream page, so a dark halo drawn behind
+   the light text (paint-order) is what keeps them legible on both. They stay
+   visible rather than hover-only — touch devices have no hover. */
+.map-pin text{
+  font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  fill:#F7EEF2;
+  stroke:rgba(12,4,9,.92);stroke-width:3.5px;paint-order:stroke fill;
+  opacity:.78;transition:opacity .3s;
+  pointer-events:none;
+}
+.map-pin:hover text,.map-pin:focus-visible text{opacity:1}
 
 .orig__list{display:grid;gap:0}
 .orig__item{

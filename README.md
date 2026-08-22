@@ -7,7 +7,8 @@ piece you can put in front of the client.
 `main.js` · `i18n.js` — no build step, no dependencies, no CDN JavaScript. Open
 `index.html` in any browser and it works.
 
-**Bilingual: English + Spanish**, switchable from the header (EN / ES).
+**English only** for now. The Spanish translation is written and dormant — one line
+re-enables it (section 4).
 
 ---
 
@@ -81,39 +82,53 @@ and keep the `noindex` guards (section 8) in place until the content is approved
 
 ---
 
-## 4. Languages (EN / ES)
+## 4. Languages — English now, Spanish ready
 
-Every piece of copy on the page is translated. The switcher is in the header.
+The site currently runs **English only**. The Spanish translation is complete and still in
+the repo, just switched off.
 
-- **All text lives in `i18n.js`** — two dictionaries, `en` and `es`, keyed by short strings.
-  Nothing is hard-coded in the markup; the HTML holds English as a readable fallback only.
-- The page picks the language from, in order: the visitor's saved choice
-  (`localStorage`), then their browser language (a Spanish browser gets Spanish
-  automatically), then English.
-- Switching also updates `<html lang>`, the `<title>`, the meta description, form
-  placeholders and validation messages, `aria-label`s, the map pin labels, and the
-  availability calendar's month names, berry names and tooltips.
+**To turn Spanish back on**, edit one line at the top of `main.js`:
 
-**To edit a translation:** find the key in `i18n.js` and change the string. To add a third
-language, copy the `es` block, rename it (e.g. `fr`), translate the values, and add one
-button to the `.lang` group in `index.html` with `data-lang="fr"`.
+```js
+var LANGUAGES = ['en', 'es'];   // was ['en']
+```
 
-**How the markup hooks in:**
+That restores the EN/ES switcher in the header, browser-language detection, and the Spanish
+legal pages. Nothing else needs changing.
+
+**Why it is off rather than deleted:** it is a finished asset you can sell. "The Spanish
+version is already built — it is a switch, not a project" is a much better position in a
+negotiation than offering to start it.
+
+### What is still in place, dormant
+
+- `i18n.js` — both dictionaries, verified in sync (no key exists in one and not the other).
+- `privacy.html`, `terms.html`, `cookies.html` — each still carries its full
+  `data-lang-block="es"` prose alongside the English.
+- The `#lang` switcher markup stays in all four HTML files; `main.js` removes it at runtime
+  while only one language is active.
+
+### One thing to redo if you re-enable it
+
+With a single language the site writes **nothing** to the browser — no cookies, no local
+storage — and `cookies.html` says exactly that. Turning Spanish back on reintroduces the
+`lang` localStorage key, so the storage table in `cookies.html` has to come back too.
+There is a comment at the top of that file reminding you.
+
+The code also clears any stale `lang` key on load, so returning visitors from the bilingual
+build do not leave the policy inaccurate.
+
+### How the markup hooks in
 
 | Attribute | Use |
 |---|---|
 | `data-i18n="key"` | replaces the element's text |
 | `data-i18n-html="key"` | replaces inner HTML — for strings containing `<em>` or `<span class="ital">` |
 | `data-i18n-attr="placeholder:key"` | sets an attribute; comma-separate for several |
+| `data-lang-block="es"` | legal-page prose blocks, shown only when that language is active |
 
-The Spanish is written for the trade, not translated literally — it uses *berries*,
-*operaciones spot*, *contraestación*, *tarrina* and *palé* as the sector actually uses them.
-Worth having the client read it once; regional wording preferences are the kind of thing
-they will have an opinion about.
-
-**Before launch:** if the client wants both languages indexed separately in search, they
-need real URLs (`/es/`) and `hreflang` tags rather than a client-side toggle. That is a
-small build step, and worth quoting as part of the SEO line item.
+Legal prose deliberately lives in the markup, not `i18n.js`, so a lawyer edits plain HTML
+rather than quoted JavaScript strings.
 
 ## 4a. The enquiry composer (no backend)
 

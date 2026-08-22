@@ -13,8 +13,14 @@
   var scrollHandlers = [];
 
   /* ---------------------------------------------------------------- 0. I18N */
+  // Active languages. The Spanish translation and the ES legal-page blocks are
+  // written and kept in sync — add 'es' here to switch the whole thing back on.
+  // With a single language the switcher is removed, browser-language detection
+  // is skipped, and nothing is written to localStorage.
+  var LANGUAGES = ['en'];
+
   var DICT = window.I18N || { en: {} };
-  var lang = 'en';
+  var lang = LANGUAGES[0];
 
   function t(key) {
     var d = DICT[lang] || {};
@@ -23,9 +29,13 @@
   }
 
   function applyLang(next) {
-    lang = DICT[next] ? next : 'en';
+    lang = DICT[next] ? next : LANGUAGES[0];
     document.documentElement.lang = lang;
-    try { localStorage.setItem('lang', lang); } catch (e) { /* private mode */ }
+    // Only remember a choice when there is a choice to remember — with one
+    // language this would store a pointless key and make the cookie policy wrong.
+    if (LANGUAGES.length > 1) {
+      try { localStorage.setItem('lang', lang); } catch (e) { /* private mode */ }
+    }
 
     $$('[data-i18n]').forEach(function (el) {
       var v = t(el.getAttribute('data-i18n'));
@@ -89,14 +99,27 @@
   }
 
   function initLang() {
+    var switcher = $('#lang');
+
+    if (LANGUAGES.length < 2) {
+      if (switcher) switcher.remove();
+      // Clear a key left behind by a bilingual build, so "we store nothing in
+      // your browser" in the cookie policy is true for returning visitors too.
+      try { localStorage.removeItem('lang'); } catch (e) {}
+      applyLang(LANGUAGES[0]);
+      return;
+    }
+
     var saved = null;
     try { saved = localStorage.getItem('lang'); } catch (e) {}
-    if (!saved) {
-      var nav = (navigator.language || 'en').toLowerCase();
-      saved = nav.indexOf('es') === 0 ? 'es' : 'en';
+    if (!saved || LANGUAGES.indexOf(saved) === -1) {
+      var nav = (navigator.language || '').toLowerCase();
+      saved = LANGUAGES.filter(function (l) { return nav.indexOf(l) === 0; })[0] || LANGUAGES[0];
     }
     $$('#lang .lang__btn').forEach(function (b) {
-      b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
+      var code = b.getAttribute('data-lang');
+      if (LANGUAGES.indexOf(code) === -1) { b.remove(); return; }
+      b.addEventListener('click', function () { applyLang(code); });
     });
     applyLang(saved);
   }

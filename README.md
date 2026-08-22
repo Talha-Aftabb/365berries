@@ -354,48 +354,63 @@ one image per product card, and a packhouse/field shot in the process section. A
 their own field and packhouse photos — genuine grower images will beat stock every time,
 and it reinforces the "grower-direct" claim.
 
-## 9. Running and deploying
+## 9. Going live — run the checklist
 
-Locally, just open `index.html`. To serve it properly:
+Two scripts do the mechanical parts. Node only, no dependencies.
 
 ```bash
-python -m http.server 8123
+node scripts/preflight.mjs
 ```
 
-### Deploying to Vercel
+Checks what can be checked automatically and prints the list that needs the client's
+sign-off. Exits non-zero if anything is blocking, so it can gate a deploy step.
 
-The folder is already a git repo with a `vercel.json`. No build step, no framework — Vercel
-serves it as static files. From inside the project folder:
+```bash
+node scripts/preflight.mjs --launch
+```
+
+Same, with the launch-only gates added (indexing enabled, legal details filled).
+
+### Step 1 — deploy the preview
 
 ```bash
 npx vercel
 ```
 
-First run asks you to log in and then a few setup questions — accept the defaults
-(scope: your account, link to existing project: **no**, project name: e.g.
-`365berries-preview`, directory: `./`, override settings: **no**). You get a preview URL
-immediately. When you're happy with it:
+Defaults are fine (link to existing project: no, name `365berries-preview`, directory `./`).
+Then `npx vercel --prod` for a clean URL.
+
+### Step 2 — stamp the domain
 
 ```bash
-npx vercel --prod
+node scripts/set-domain.mjs https://365berries-preview.vercel.app
 ```
 
-That gives the clean `365berries-preview.vercel.app` link to send the client.
+Makes `og:image` absolute and adds `og:url` + `<link rel="canonical">` on all four pages.
+Without this the link shows as a bare text card in WhatsApp — the preview image simply will
+not appear. Re-run it if the domain ever changes; it is idempotent.
 
-### ⚠️ The preview is set to noindex — leave it that way
+Then redeploy, and check the card at [opengraph.xyz](https://www.opengraph.xyz/).
 
-This build carries unverified certification and reference claims under a real company's
-name. If Google indexes it, those claims are public and attributed to the client. Two
-guards are in place:
+### Step 3 — before it goes public (not before the pitch)
 
-- `<meta name="robots" content="noindex, nofollow">` in `index.html`
-- `X-Robots-Tag: noindex, nofollow` in `vercel.json`
+- Fill the `[TO BE COMPLETED]` gaps in `terms.html` — registered office and Commercial
+  Registry volume/folio/sheet, in **both** language blocks.
+- Clear every item in the sign-off list that `preflight` prints. The certifications are the
+  one that carries real legal exposure.
+- Remove `<meta name="robots" content="noindex, nofollow">` from all four pages and the
+  `X-Robots-Tag` header from `vercel.json`.
+- Run `node scripts/preflight.mjs --launch` and get a clean pass.
+- Have the legal pages reviewed by the client's *gestoría*.
 
-Remove **both** only once the client has approved the content and it goes to their real
-domain. Section 3 covers what has to be verified first.
+### Keep the repo private until then
 
-**Pitch tip:** send the live link, not a zip. Seeing it load on their own phone is what
-closes this.
+The GitHub repo carries the client's registered NIF and unverified certification claims.
+`noindex` protects the deployed site, not the repository.
+
+```bash
+gh repo edit <owner>/<repo> --visibility private --accept-visibility-change-consequences
+```
 
 ## 10. Suggested scope to quote
 

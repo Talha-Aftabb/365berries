@@ -975,7 +975,9 @@ body.loaded .loader{pointer-events:none}
   box-shadow:0 14px 40px -12px rgba(198,34,78,.9);
   transition:transform .45s var(--e-out),background .3s;
 }
-.film__play svg{width:34%;height:34%;margin-left:8%}
+/* No optical nudge needed: the triangle's centroid already sits at 12.11 in a
+   24-unit viewBox, so centring the box centres the glyph's visual mass. */
+.film__play svg{width:34%;height:34%}
 .film__trigger:hover .film__play{transform:translate(-50%,-50%) scale(1.09)}
 .film__trigger:active .film__play{transform:translate(-50%,-50%) scale(.96)}
 /* pulse ring */

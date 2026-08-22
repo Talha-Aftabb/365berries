@@ -657,6 +657,38 @@
     });
   })();
 
+  /* ---------------------------------------------------------------- 16c. FILM */
+  // Click-to-load. The Vimeo player is only injected on press, so no third-party
+  // request is made and no cookie is set unless the visitor asks for the video.
+  // dnt=1 tells Vimeo not to track the session even then.
+  (function film() {
+    var trigger = $('#filmPlay');
+    if (!trigger) return;
+
+    var VIDEO = '828990290', HASH = 'cc37213bba';
+
+    trigger.addEventListener('click', function () {
+      var frame = document.createElement('div');
+      frame.className = 'film__frame';
+
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://player.vimeo.com/video/' + VIDEO + '?h=' + HASH +
+                   '&dnt=1&autoplay=1&title=0&byline=0&portrait=0';
+      iframe.title = '365 Berries';
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.setAttribute('loading', 'lazy');
+
+      frame.appendChild(iframe);
+      trigger.replaceWith(frame);
+
+      var note = $('.film__note');
+      if (note) note.remove();
+      iframe.focus();
+    });
+  })();
+
   /* ---------------------------------------------------------------- 17. LANGUAGE INIT */
   // Last, so the calendar, quote dots and split headings all exist to translate.
   initLang();

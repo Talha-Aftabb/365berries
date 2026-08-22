@@ -941,3 +941,69 @@ body.loaded .hero__stats{opacity:1;transform:none}
 /* Defensive: once hidden the preloader must never intercept clicks, even if
    its opacity/visibility transition is interrupted (e.g. backgrounded tab). */
 body.loaded .loader{pointer-events:none}
+
+/* ---------- 25. FILM (click-to-load Vimeo facade) ---------- */
+.film{max-width:1080px;margin-inline:auto}
+.film__trigger{
+  position:relative;display:block;width:100%;
+  aspect-ratio:16/9;
+  border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--plum-800);
+  cursor:pointer;isolation:isolate;
+  transition:transform .5s var(--e-out),box-shadow .5s var(--e-out),border-color .4s;
+}
+.film__trigger:hover{transform:translateY(-4px);border-color:transparent;box-shadow:0 30px 60px -30px rgba(0,0,0,.85)}
+.film__poster{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .8s var(--e-out),filter .5s var(--e-out);
+}
+.film__trigger:hover .film__poster{transform:scale(1.04)}
+.film__shade{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(60% 60% at 50% 50%, rgba(21,7,16,.15), rgba(21,7,16,.55) 100%),
+    linear-gradient(to top, rgba(21,7,16,.85), rgba(21,7,16,.05) 55%);
+  transition:opacity .5s var(--e-out);
+}
+.film__trigger:hover .film__shade{opacity:.85}
+.film__play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:clamp(64px,8vw,88px);aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--rasp-500);color:#fff;
+  box-shadow:0 14px 40px -12px rgba(198,34,78,.9);
+  transition:transform .45s var(--e-out),background .3s;
+}
+.film__play svg{width:34%;height:34%;margin-left:8%}
+.film__trigger:hover .film__play{transform:translate(-50%,-50%) scale(1.09)}
+.film__trigger:active .film__play{transform:translate(-50%,-50%) scale(.96)}
+/* pulse ring */
+.film__play::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  border:2px solid var(--rasp-400);
+  animation:filmPing 2.6s var(--e-out) infinite;
+}
+@keyframes filmPing{0%{transform:scale(1);opacity:.65}70%,100%{transform:scale(1.9);opacity:0}}
+.film__meta{
+  position:absolute;left:clamp(1rem,3vw,2rem);bottom:clamp(1rem,3vw,1.75rem);
+  display:flex;align-items:baseline;gap:.7rem;color:#F7EEF2;text-align:left;
+}
+.film__meta b{font-family:var(--font-display);font-weight:500;font-size:clamp(1.05rem,2vw,1.5rem)}
+.film__meta i{font-family:var(--font-mono);font-style:normal;font-size:.68rem;letter-spacing:.16em;opacity:.7}
+.film__note{
+  margin-top:1rem;text-align:center;
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--fg-muted);
+}
+/* once loaded */
+.film__frame{
+  position:relative;width:100%;aspect-ratio:16/9;
+  border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);
+  background:#000;
+}
+.film__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media (prefers-reduced-motion:reduce){
+  .film__play::after{animation:none}
+  .film__trigger:hover .film__poster{transform:none}
+}

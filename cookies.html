@@ -3,8 +3,8 @@
   ⚠️  TEMPLATE — NOT LEGAL ADVICE.
   This describes what the site ACTUALLY does today: no cookies, no local storage,
   and webfonts loaded from Google. Two things would make it inaccurate:
-   1. adding analytics, a chat widget, a pixel or embedded video — that also makes
-      a consent banner legally required;
+   1. adding analytics, a chat widget or a pixel — that also makes a consent
+      banner legally required. (The Vimeo film is click-to-load, so it does not.)
    2. re-enabling the Spanish switcher (LANGUAGES in main.js), which stores a
       'lang' key in localStorage. Restore the storage table here if you do.
   See README sections 3 and 4.
@@ -115,6 +115,20 @@
         If you would prefer no data to reach Google at all, the fonts can be hosted directly on
         this site instead. Contact us and we will tell you the current arrangement.
       </p>
+      <h3>Vimeo (video)</h3>
+      <p>
+        The film on our home page is hosted by Vimeo. <strong>It is not loaded when the page
+        opens.</strong> The still image you see is served from this site, and nothing is
+        requested from Vimeo — and no cookie is set by them — unless you press play.
+      </p>
+      <p>
+        If you do press play, Vimeo receives your IP address and may set cookies in order to
+        deliver the video. We request the player in "Do Not Track" mode, which asks Vimeo not
+        to record analytics for your session. See
+        <a href="https://vimeo.com/privacy" target="_blank" rel="noopener noreferrer">Vimeo's
+        privacy policy</a>. Simply not pressing play means no data reaches them at all.
+      </p>
+
       <h3>Hosting</h3>
       <p>
         Our hosting provider processes standard server logs (IP address, browser type, pages
@@ -128,6 +142,7 @@
         <li>No advertising or remarketing pixels.</li>
         <li>No social media trackers or embedded feeds.</li>
         <li>No chat widgets or session recording.</li>
+        <li>No third-party content that loads without you asking for it.</li>
       </ul>
       <p>
         If that changes, this page will be updated and a consent banner will be shown before
@@ -181,6 +196,20 @@
         Si prefieres que no llegue ningún dato a Google, las tipografías pueden alojarse
         directamente en esta web. Escríbenos y te indicamos la configuración actual.
       </p>
+      <h3>Vimeo (vídeo)</h3>
+      <p>
+        El vídeo de nuestra página de inicio está alojado en Vimeo. <strong>No se carga al
+        abrir la página.</strong> La imagen fija que ves se sirve desde esta web y no se
+        solicita nada a Vimeo —ni instalan ninguna cookie— salvo que pulses play.
+      </p>
+      <p>
+        Si pulsas play, Vimeo recibe tu dirección IP y puede instalar cookies para reproducir
+        el vídeo. Solicitamos el reproductor en modo «Do Not Track», que pide a Vimeo que no
+        registre analítica de tu sesión. Consulta la
+        <a href="https://vimeo.com/privacy" target="_blank" rel="noopener noreferrer">política
+        de privacidad de Vimeo</a>. Si no pulsas play, no les llega ningún dato.
+      </p>
+
       <h3>Alojamiento</h3>
       <p>
         Nuestro proveedor de alojamiento trata registros de servidor estándar (dirección IP,
@@ -194,6 +223,7 @@
         <li>Ningún píxel publicitario ni de remarketing.</li>
         <li>Ningún rastreador de redes sociales ni contenido incrustado.</li>
         <li>Ningún chat ni grabación de sesiones.</li>
+        <li>Ningún contenido de terceros que se cargue sin que lo pidas.</li>
       </ul>
       <p>
         Si esto cambiara, actualizaríamos esta página y mostraríamos un banner de

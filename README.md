@@ -183,6 +183,38 @@ show as a bare text card until this is done. Re-check with
 [opengraph.xyz](https://www.opengraph.xyz/) after deploying — and note WhatsApp caches
 previews aggressively, so test with a fresh URL rather than re-pasting the same one.
 
+## 4b. The video
+
+Section 05, between "How we work" and "Origins" — the client's 28-second Vimeo clip
+(`828990290`).
+
+**It is click-to-load, not a plain embed.** On page load nothing is requested from Vimeo
+and no iframe exists; the still you see is `assets/video-poster.jpg`, served from this site.
+The player is injected only when the visitor presses play, and even then it is requested
+with `dnt=1` (Vimeo's Do Not Track mode).
+
+That was necessary, not decorative. A normal `<iframe>` embed loads Vimeo on every page
+view, sets third-party cookies, and would have made the cookie policy false — and for a
+Spanish company it would legally require a consent banner before the page could load at
+all. Click-to-load keeps the site cookie-free by default, keeps `cookies.html` accurate
+(it now discloses Vimeo explicitly), and loads faster. The cookie page and its Spanish
+version both describe this.
+
+The poster was pulled from Vimeo's own thumbnail, trimmed of its white letterbox bars and
+re-cut to 16:9 — so it is a real frame of the film, not a stand-in.
+
+### Two things to raise with the client
+
+1. **The video is called "Untitled video - Made with Clipchamp (2).mp4"** on Vimeo. The
+   player is loaded with `title=0&byline=0&portrait=0` so it is hidden, but it will show
+   anywhere else the link is shared. Worth renaming in their Vimeo account.
+2. **It is 28 seconds and has no audio track worth speaking of.** Fine as an atmosphere
+   piece where it sits. If they want it to carry more weight — packhouse, grading line,
+   loading — that is a content conversation, not a build one.
+
+**To swap the video:** change `VIDEO` and `HASH` in `main.js` (§16c) and replace
+`assets/video-poster.jpg`.
+
 ## 5. The logo
 
 The client's current logo is a 3D cartoon bubble-letter lockup in primary yellow / red /

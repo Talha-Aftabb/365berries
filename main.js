@@ -672,8 +672,12 @@
       frame.className = 'film__frame';
 
       var iframe = document.createElement('iframe');
+      // background=1 -> autoplay, loop, muted, no player chrome. Needed because
+      // the frame is scale-cropped (the source video has a white border baked
+      // in), which would push Vimeo's control bar outside the visible area.
       iframe.src = 'https://player.vimeo.com/video/' + VIDEO + '?h=' + HASH +
-                   '&dnt=1&autoplay=1&title=0&byline=0&portrait=0';
+                   '&dnt=1&background=1&autoplay=1&loop=1&muted=1' +
+                   '&controls=0&title=0&byline=0&portrait=0';
       iframe.title = '365 Berries';
       iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');

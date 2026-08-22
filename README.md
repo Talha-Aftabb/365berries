@@ -212,6 +212,21 @@ re-cut to 16:9 — so it is a real frame of the film, not a stand-in.
    piece where it sits. If they want it to carry more weight — packhouse, grading line,
    loading — that is a content conversation, not a build one.
 
+### The white border
+
+The source video has a **10% white margin baked into every frame** — measured from Vimeo's
+own thumbnail, which showed the footage occupying only (160,90)–(1440,810) of a 1600×900
+frame. It is in the file, not in the page.
+
+The player is therefore scaled to `125%` inside a clipped frame, which crops it out exactly
+(measured: 9.9% removed per side). Because that crop would also push Vimeo's control bar
+out of view, the player runs in `background=1` mode — autoplay, loop, muted, no chrome —
+which suits a 28-second field clip and sidesteps browsers blocking unmuted autoplay.
+
+**The proper fix is the client re-exporting the video without the border.** When they do,
+set `--film-crop` back to `100%` in `styles.css` and drop `background=1` from `main.js` if
+they want controls back. The poster image is already correctly trimmed, so it needs nothing.
+
 **To swap the video:** change `VIDEO` and `HASH` in `main.js` (§16c) and replace
 `assets/video-poster.jpg`.
 

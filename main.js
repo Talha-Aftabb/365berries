@@ -666,30 +666,116 @@
     if (!trigger) return;
 
     var VIDEO = '828990290', HASH = 'cc37213bba';
+    var ORIGIN = 'https://player.vimeo.com';
+
+    var ICON = {
+      play:  'M8 5.14v13.72a1 1 0 0 0 1.54.84l10.8-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z',
+      pause: 'M7 4h3.5v16H7zM13.5 4H17v16h-3.5z',
+      muted: 'M11 5 6.5 9H3v6h3.5L11 19zM16 9.5l5 5m0-5-5 5',
+      loud:  'M11 5 6.5 9H3v6h3.5L11 19zM15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12',
+      close: 'M18 6 6 18M6 6l12 12'
+    };
+
+    function icon(d, filled) {
+      return '<svg viewBox="0 0 24 24" fill="' + (filled ? 'currentColor' : 'none') +
+             '" stroke="' + (filled ? 'none' : 'currentColor') +
+             '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+             '<path d="' + d + '"/></svg>';
+    }
+
+    function button(cls, html, labelKey) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'film__ctrl ' + cls;
+      b.innerHTML = html;
+      b.setAttribute('aria-label', t(labelKey) || '');
+      b.dataset.labelKey = labelKey;
+      return b;
+    }
 
     trigger.addEventListener('click', function () {
       var frame = document.createElement('div');
       frame.className = 'film__frame';
 
       var iframe = document.createElement('iframe');
-      // background=1 -> autoplay, loop, muted, no player chrome. Needed because
-      // the frame is scale-cropped (the source video has a white border baked
-      // in), which would push Vimeo's control bar outside the visible area.
-      iframe.src = 'https://player.vimeo.com/video/' + VIDEO + '?h=' + HASH +
-                   '&dnt=1&background=1&autoplay=1&loop=1&muted=1' +
-                   '&controls=0&title=0&byline=0&portrait=0';
+      // Native chrome is hidden (controls=0) because the frame is scale-cropped
+      // to remove the white border baked into the source video — Vimeo's own
+      // control bar would sit outside the visible area. Our controls below drive
+      // the player over postMessage instead, so nothing is lost.
+      // muted=1 is required for autoplay to be allowed; the user can unmute.
+      iframe.src = ORIGIN + '/video/' + VIDEO + '?h=' + HASH +
+                   '&dnt=1&autoplay=1&muted=1&controls=0&playsinline=1' +
+                   '&title=0&byline=0&portrait=0';
       iframe.title = '365 Berries';
       iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-      iframe.setAttribute('loading', 'lazy');
+
+      function send(method, value) {
+        if (!iframe.contentWindow) return;
+        var msg = (value === undefined) ? { method: method } : { method: method, value: value };
+        try { iframe.contentWindow.postMessage(JSON.stringify(msg), ORIGIN); } catch (e) {}
+      }
+
+      var playing = true, muted = true;
+
+      var bPlay  = button('film__ctrl--play', icon(ICON.pause, true), 'fl.pause');
+      var bMute  = button('film__ctrl--mute', icon(ICON.muted), 'fl.unmute');
+      var bClose = button('film__ctrl--close', icon(ICON.close), 'fl.close');
+
+      function setPlaying(next) {
+        playing = next;
+        bPlay.innerHTML = icon(playing ? ICON.pause : ICON.play, true);
+        bPlay.dataset.labelKey = playing ? 'fl.pause' : 'fl.play';
+        bPlay.setAttribute('aria-label', t(bPlay.dataset.labelKey) || '');
+      }
+      function setMuted(next) {
+        muted = next;
+        bMute.innerHTML = icon(muted ? ICON.muted : ICON.loud);
+        bMute.dataset.labelKey = muted ? 'fl.unmute' : 'fl.mute';
+        bMute.setAttribute('aria-label', t(bMute.dataset.labelKey) || '');
+      }
+
+      bPlay.addEventListener('click', function () {
+        send(playing ? 'pause' : 'play');
+        setPlaying(!playing);
+      });
+      bMute.addEventListener('click', function () {
+        if (muted) { send('setMuted', false); send('setVolume', 1); }
+        else { send('setMuted', true); send('setVolume', 0); }
+        setMuted(!muted);
+      });
+      bClose.addEventListener('click', function () {
+        window.removeEventListener('message', onMessage);
+        frame.replaceWith(trigger);       // back to the poster; Vimeo is unloaded
+        trigger.focus();
+      });
+
+      function onMessage(e) {
+        if (e.origin !== ORIGIN) return;   // only trust the player
+        var d;
+        try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (err) { return; }
+        if (!d) return;
+        if (d.event === 'ready') {
+          ['play', 'pause', 'ended'].forEach(function (ev) { send('addEventListener', ev); });
+        } else if (d.event === 'play') { setPlaying(true); }
+        else if (d.event === 'pause' || d.event === 'ended') { setPlaying(false); }
+      }
+      window.addEventListener('message', onMessage);
+
+      var bar = document.createElement('div');
+      bar.className = 'film__controls';
+      bar.appendChild(bPlay);
+      bar.appendChild(bMute);
+      bar.appendChild(bClose);
 
       frame.appendChild(iframe);
+      frame.appendChild(bar);
       trigger.replaceWith(frame);
 
       var note = $('.film__note');
       if (note) note.remove();
-      iframe.focus();
+      bPlay.focus();
     });
   })();
 

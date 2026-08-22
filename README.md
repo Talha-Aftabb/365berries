@@ -219,13 +219,14 @@ own thumbnail, which showed the footage occupying only (160,90)–(1440,810) of 
 frame. It is in the file, not in the page.
 
 The player is therefore scaled to `125%` inside a clipped frame, which crops it out exactly
-(measured: 9.9% removed per side). Because that crop would also push Vimeo's control bar
-out of view, the player runs in `background=1` mode — autoplay, loop, muted, no chrome —
-which suits a 28-second field clip and sidesteps browsers blocking unmuted autoplay.
+(measured: 9.9% removed per side). That crop would hide Vimeo's own control bar, so native chrome is off (`controls=0`) and
+the page draws **its own controls** — play/pause, mute/unmute, close — which drive the
+player over Vimeo's `postMessage` API. No SDK, no extra third-party script. The player
+starts muted because browsers block autoplay with sound; the unmute button is right there.
+Close unloads the iframe and restores the poster.
 
 **The proper fix is the client re-exporting the video without the border.** When they do,
-set `--film-crop` back to `100%` in `styles.css` and drop `background=1` from `main.js` if
-they want controls back. The poster image is already correctly trimmed, so it needs nothing.
+set `--film-crop` back to `100%` in `styles.css`. The custom controls can stay either way. The poster image is already correctly trimmed, so it needs nothing.
 
 **To swap the video:** change `VIDEO` and `HASH` in `main.js` (§16c) and replace
 `assets/video-poster.jpg`.

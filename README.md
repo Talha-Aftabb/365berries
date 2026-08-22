@@ -149,6 +149,25 @@ Swap it for a hosted form endpoint — no backend still required:
 It is a one-line change: give the `<form>` an `action` and `method="POST"`, and remove the
 submit handler in `main.js`. Worth quoting as a small line item rather than doing for free.
 
+### Link preview (og:image)
+
+`assets/og-image.jpg` (1200×630, ~60KB) is the card that renders when the link is pasted
+into WhatsApp, LinkedIn, Slack or an email client. It is generated, not photographed, so it
+costs nothing and matches the site.
+
+**One step after deploying:** open each of the four HTML files and make `og:image` an
+absolute URL, and add `og:url`:
+
+```html
+<meta property="og:url" content="https://your-domain.vercel.app/">
+<meta property="og:image" content="https://your-domain.vercel.app/assets/og-image.jpg">
+```
+
+WhatsApp and Facebook do not reliably resolve a *relative* image URL, so the preview will
+show as a bare text card until this is done. Re-check with
+[opengraph.xyz](https://www.opengraph.xyz/) after deploying — and note WhatsApp caches
+previews aggressively, so test with a fresh URL rather than re-pasting the same one.
+
 ## 5. The logo
 
 The client's current logo is a 3D cartoon bubble-letter lockup in primary yellow / red /

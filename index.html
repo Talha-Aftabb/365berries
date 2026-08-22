@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>365 Berries — Berries in season, 365 days a year</title>
+<meta name="description" content="365 Berries is a Spain-based sourcing partner for blueberries, strawberries, raspberries and blackberries. Spot market trades and seasonal programmes, grower-direct.">
+<meta name="theme-color" content="#150710">
+
+<!-- PREVIEW ONLY. This concept contains unverified certification and reference claims.
+     Delete this tag (and the X-Robots-Tag header in vercel.json) only at launch. -->
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="365 Berries — Berries in season, 365 days a year">
+<meta property="og:description" content="Grower-direct blueberries, strawberries, raspberries and blackberries. Spot trades and seasonal programmes from Spain, Portugal, Morocco and South America.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='13.5' cy='28' r='8.5' fill='%234B4A8F'/%3E%3Ccircle cx='26.5' cy='28' r='8.5' fill='%235C1A45'/%3E%3Ccircle cx='20' cy='18' r='8.5' fill='%23E23A63'/%3E%3Cellipse cx='14.8' cy='8.4' rx='5' ry='2.5' fill='%234E9E77' transform='rotate(-20 14.8 8.4)'/%3E%3Cellipse cx='25.2' cy='8.4' rx='5' ry='2.5' fill='%234E9E77' transform='rotate(20 25.2 8.4)'/%3E%3Cpath d='M20 11V5' stroke='%232F6B4F' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="loader__mark">365<span>.</span></div>
+    <div class="loader__bar"><div class="loader__fill" id="loaderFill"></div></div>
+    <div class="loader__pct" id="loaderPct">0%</div>
+  </div>
+</div>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="#top" class="brand" data-i18n-attr="aria-label:a11y.home">
+      <svg class="brand__logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <!-- Three berries, three tones: blueberry, blackberry, raspberry -->
+        <circle cx="13.5" cy="28" r="8" fill="url(#blueH)"/>
+        <circle cx="26.5" cy="28" r="8" fill="url(#blackH)"/>
+        <circle cx="20" cy="18.5" r="8" fill="url(#raspH)"/>
+        <circle cx="17" cy="15.5" r="2.4" fill="#fff" opacity=".32"/>
+        <ellipse cx="14.8" cy="8.4" rx="5" ry="2.5" fill="#4E9E77" transform="rotate(-20 14.8 8.4)"/>
+        <ellipse cx="25.2" cy="8.4" rx="5" ry="2.5" fill="#4E9E77" transform="rotate(20 25.2 8.4)"/>
+        <path d="M20 11.5V5.5" stroke="#2F6B4F" stroke-width="2.2" stroke-linecap="round"/>
+        <defs>
+          <radialGradient id="blueH" cx=".35" cy=".3" r=".9">
+            <stop stop-color="#8887D8"/><stop offset="1" stop-color="#3E3D78"/>
+          </radialGradient>
+          <radialGradient id="blackH" cx=".35" cy=".3" r=".9">
+            <stop stop-color="#A45C8C"/><stop offset="1" stop-color="#4A1234"/>
+          </radialGradient>
+          <radialGradient id="raspH" cx=".35" cy=".3" r=".9">
+            <stop stop-color="#FF9AAF"/><stop offset=".6" stop-color="#E23A63"/><stop offset="1" stop-color="#A81B43"/>
+          </radialGradient>
+        </defs>
+      </svg>
+      <span class="brand__txt">
+        <span class="brand__name">365 <b>Berries</b></span>
+        <span class="brand__sub" data-i18n="brand.sub">Fruit Sourcing &amp; Trade</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#products" data-i18n="nav.products">Products</a>
+      <a href="#availability" data-i18n="nav.availability">Availability</a>
+      <a href="#process" data-i18n="nav.process">How we work</a>
+      <a href="#origins" data-i18n="nav.origins">Origins</a>
+      <a href="#quality" data-i18n="nav.quality">Quality</a>
+    </nav>
+
+    <div class="header__right">
+      <div class="lang" id="lang" role="group" data-i18n-attr="aria-label:a11y.lang">
+        <button class="lang__btn is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang__btn" type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+
+      <a href="#contact" class="btn header__cta">
+        <span data-i18n="cta.quote">Request a quote</span>
+        <svg class="btn__ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" data-i18n-attr="aria-label:a11y.menuOpen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="drawer" id="drawer">
+  <nav class="drawer__nav" aria-label="Mobile">
+    <a href="#products" style="--i:0" data-i18n="nav.products">Products</a>
+    <a href="#availability" style="--i:1" data-i18n="nav.availability">Availability</a>
+    <a href="#process" style="--i:2" data-i18n="nav.process">How we work</a>
+    <a href="#origins" style="--i:3" data-i18n="nav.origins">Origins</a>
+    <a href="#quality" style="--i:4" data-i18n="nav.quality">Quality</a>
+    <a href="#contact" style="--i:5" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="drawer__foot">
+    <a href="mailto:david@365berries.com">david@365berries.com</a>
+    <a href="tel:+34612584209">+34 612 584 209</a>
+    <span>365Berries SL · NIF B72697436</span>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<section class="hero is-dark">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__glow hero__glow--a" data-speed="0.06"></div>
+    <div class="hero__glow hero__glow--b" data-speed="-0.05"></div>
+    <div class="hero__glow hero__glow--c" data-speed="0.04"></div>
+  </div>
+  <div class="hero__grain" aria-hidden="true"></div>
+
+  <div class="hero__berries" aria-hidden="true">
+    <svg class="hero__berry hero__berry--1 float" data-speed="-0.16" viewBox="0 0 120 120" fill="none">
+      <g fill="url(#hb1)">
+        <circle cx="60" cy="44" r="12"/><circle cx="46" cy="56" r="12"/><circle cx="74" cy="56" r="12"/>
+        <circle cx="60" cy="65" r="12"/><circle cx="39" cy="76" r="11"/><circle cx="81" cy="76" r="11"/>
+        <circle cx="60" cy="86" r="12"/>
+      </g>
+      <circle cx="56" cy="40" r="4" fill="#fff" opacity=".3"/>
+      <ellipse cx="49" cy="27" rx="11" ry="5" fill="#4E9E77" transform="rotate(-22 49 27)"/>
+      <ellipse cx="71" cy="27" rx="11" ry="5" fill="#4E9E77" transform="rotate(22 71 27)"/>
+      <path d="M60 32V12" stroke="#2F6B4F" stroke-width="5" stroke-linecap="round"/>
+      <defs><radialGradient id="hb1" cx=".35" cy=".3" r=".9">
+        <stop stop-color="#FF9AAF"/><stop offset=".55" stop-color="#C6224E"/><stop offset="1" stop-color="#5E0F2E"/>
+      </radialGradient></defs>
+    </svg>
+    <svg class="hero__berry hero__berry--2 float float--b" data-speed="-0.24" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="66" r="38" fill="url(#hb2)"/>
+      <circle cx="48" cy="52" r="9" fill="#fff" opacity=".2"/>
+      <path d="M60 30c-4-5-10-6-14-4 3 5 9 7 14 4Zm0 0c4-5 10-6 14-4-3 5-9 7-14 4Zm0 0V12" stroke="#6E6CC4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <defs><radialGradient id="hb2" cx=".35" cy=".3" r=".85">
+        <stop stop-color="#8887D8"/><stop offset=".55" stop-color="#3E3D78"/><stop offset="1" stop-color="#191841"/>
+      </radialGradient></defs>
+    </svg>
+    <svg class="hero__berry hero__berry--3 float" data-speed="-0.1" viewBox="0 0 120 120" fill="none">
+      <g fill="url(#hb3)">
+        <circle cx="60" cy="44" r="11"/><circle cx="47" cy="54" r="11"/><circle cx="73" cy="54" r="11"/>
+        <circle cx="60" cy="63" r="11"/><circle cx="43" cy="72" r="11"/><circle cx="77" cy="72" r="11"/>
+        <circle cx="60" cy="82" r="11"/><circle cx="48" cy="91" r="10"/><circle cx="72" cy="91" r="10"/>
+      </g>
+      <circle cx="56" cy="41" r="3.6" fill="#fff" opacity=".2"/>
+      <ellipse cx="50" cy="28" rx="10" ry="4.6" fill="#2F6B4F" transform="rotate(-22 50 28)"/>
+      <ellipse cx="70" cy="28" rx="10" ry="4.6" fill="#2F6B4F" transform="rotate(22 70 28)"/>
+      <defs><radialGradient id="hb3" cx=".35" cy=".3" r=".85">
+        <stop stop-color="#9C4B7E"/><stop offset=".55" stop-color="#5C1A45"/><stop offset="1" stop-color="#25091B"/>
+      </radialGradient></defs>
+    </svg>
+    <svg class="hero__berry hero__berry--4 float float--b" data-speed="-0.3" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="68" r="34" fill="url(#hb4)"/>
+      <circle cx="50" cy="56" r="8" fill="#fff" opacity=".2"/>
+      <defs><radialGradient id="hb4" cx=".35" cy=".3" r=".85">
+        <stop stop-color="#FF9AAF"/><stop offset=".6" stop-color="#E23A63"/><stop offset="1" stop-color="#7B1E4B"/>
+      </radialGradient></defs>
+    </svg>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__chip">
+      <span class="pulse" aria-hidden="true"><i></i></span>
+      <span><span data-i18n="hero.chip">In season now —</span> <b id="seasonNow">…</b></span>
+    </div>
+
+    <h1 class="hero__title">
+      <span class="ln" style="--i:0"><span data-i18n-html="hero.t1">Berries in season,</span></span>
+      <span class="ln" style="--i:1"><span data-i18n-html="hero.t2"><em>365 days</em> a year.</span></span>
+    </h1>
+
+    <div class="hero__grid">
+      <div>
+        <p class="hero__copy" data-i18n="hero.copy">
+          A Spain-based sourcing partner for blueberries, strawberries, raspberries and
+          blackberries — spot trades when the market moves, seasonal programmes when
+          you need certainty. Grower-direct, spec-led, one contact from order to arrival.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn">
+            <span data-i18n="cta.quote">Request a quote</span>
+            <svg class="btn__ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#availability" class="btn btn--ghost" data-i18n="cta.availability">See availability</a>
+        </div>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat"><b>04</b><span data-i18n="hero.s1">Core berry lines</span></div>
+        <div class="hero__stat"><b>07</b><span data-i18n="hero.s2">Sourcing origins</span></div>
+        <div class="hero__stat"><b>12</b><span data-i18n="hero.s3">Months coverage</span></div>
+        <div class="hero__stat"><b>24h</b><span data-i18n="hero.s4">Quote response</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><i></i> <span data-i18n="hero.scroll">Scroll</span></div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marqueeTrack">
+    <div class="marquee__group" style="display:flex">
+      <span class="marquee__item" data-i18n="mq.1">Blueberries</span>
+      <span class="marquee__item" data-i18n="mq.2">Strawberries</span>
+      <span class="marquee__item" data-i18n="mq.3">Raspberries</span>
+      <span class="marquee__item" data-i18n="mq.4">Blackberries</span>
+      <span class="marquee__item" data-i18n="mq.5">Spot market trades</span>
+      <span class="marquee__item" data-i18n="mq.6">Seasonal programmes</span>
+      <span class="marquee__item" data-i18n="mq.7">Grower-direct</span>
+      <span class="marquee__item" data-i18n="mq.8">Huelva · Spain</span>
+      <span class="marquee__item" data-i18n="mq.9">Morocco</span>
+      <span class="marquee__item" data-i18n="mq.10">Peru</span>
+      <span class="marquee__item" data-i18n="mq.11">Chile</span>
+      <span class="marquee__item" data-i18n="mq.12">Reefer &amp; air freight</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head__row">
+        <div>
+          <span class="eyebrow" data-i18n="p.eyebrow">01 — Our lines</span>
+          <h2 class="split" data-split data-i18n-html="p.h2">Four berries. <span class="ital">One standard.</span></h2>
+        </div>
+        <p class="lead" data-reveal data-i18n="p.lead">
+          We trade what we can stand behind. Every line is specified before it is offered —
+          variety, calibre, brix, punnet format and shelf-life expectation agreed up front.
+        </p>
+      </div>
+    </div>
+
+    <div class="prod-grid" data-stagger>
+
+      <article class="prod" style="--prod-grad:linear-gradient(160deg,#3E3D78,#191841)">
+        <span class="prod__idx">/ 01</span>
+        <div class="prod__art">
+          <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <circle cx="60" cy="70" r="40" fill="url(#pb1)"/>
+            <circle cx="47" cy="56" r="10" fill="#fff" opacity=".2"/>
+            <path d="M60 32c-4-5-10-6-14-4 3 5 9 7 14 4Zm0 0c4-5 10-6 14-4-3 5-9 7-14 4Zm0 0V16" stroke="#4E9E77" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><radialGradient id="pb1" cx=".35" cy=".28" r=".85">
+              <stop stop-color="#8887D8"/><stop offset=".55" stop-color="#3E3D78"/><stop offset="1" stop-color="#131233"/>
+            </radialGradient></defs>
+          </svg>
+        </div>
+        <h3 class="prod__name" data-i18n="p1.name">Blueberries</h3>
+        <p class="prod__desc" data-i18n="p1.desc">Firm, high-brix fruit with consistent calibre. Our broadest origin spread — the line that keeps programmes running through the shoulder months.</p>
+        <div class="prod__meta">
+          <span class="prod__tag">125g–500g</span>
+          <span class="prod__tag" data-i18n="p1.t2">Punnet · Bulk</span>
+          <span class="prod__tag" data-i18n="p1.t3">Air · Reefer</span>
+        </div>
+      </article>
+
+      <article class="prod" style="--prod-grad:linear-gradient(160deg,#C6224E,#5E0F2E)">
+        <span class="prod__idx">/ 02</span>
+        <div class="prod__art">
+          <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <path d="M60 108c22-10 34-28 34-46 0-14-15-24-34-24s-34 10-34 24c0 18 12 36 34 46Z" fill="url(#pb2)"/>
+            <g fill="#FFE8B0" opacity=".85">
+              <ellipse cx="48" cy="56" rx="2.1" ry="3.1"/><ellipse cx="62" cy="52" rx="2.1" ry="3.1"/>
+              <ellipse cx="75" cy="58" rx="2.1" ry="3.1"/><ellipse cx="54" cy="70" rx="2.1" ry="3.1"/>
+              <ellipse cx="68" cy="68" rx="2.1" ry="3.1"/><ellipse cx="60" cy="84" rx="2.1" ry="3.1"/>
+              <ellipse cx="46" cy="82" rx="2.1" ry="3.1"/><ellipse cx="74" cy="80" rx="2.1" ry="3.1"/>
+            </g>
+            <path d="M60 40 44 26m16 14 16-14M60 40 40 38m20 2 20-2M60 40V16" stroke="#2F6B4F" stroke-width="5" stroke-linecap="round"/>
+            <defs><radialGradient id="pb2" cx=".38" cy=".3" r=".8">
+              <stop stop-color="#FF6B6B"/><stop offset=".5" stop-color="#D62442"/><stop offset="1" stop-color="#780F26"/>
+            </radialGradient></defs>
+          </svg>
+        </div>
+        <h3 class="prod__name" data-i18n="p2.name">Strawberries</h3>
+        <p class="prod__desc" data-i18n="p2.desc">Huelva-led in the European window, with counter-season cover. Selected for colour hold and firmness on arrival, not just field appearance.</p>
+        <div class="prod__meta">
+          <span class="prod__tag">250g–500g</span>
+          <span class="prod__tag" data-i18n="p2.t2">Class I &amp; II</span>
+          <span class="prod__tag" data-i18n="p2.t3">Reefer</span>
+        </div>
+      </article>
+
+      <article class="prod" style="--prod-grad:linear-gradient(160deg,#E23A63,#7B1E4B)">
+        <span class="prod__idx">/ 03</span>
+        <div class="prod__art">
+          <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <g fill="url(#pb3)">
+              <circle cx="60" cy="46" r="11"/><circle cx="47" cy="58" r="11"/><circle cx="73" cy="58" r="11"/>
+              <circle cx="60" cy="66" r="11"/><circle cx="40" cy="76" r="10"/><circle cx="80" cy="76" r="10"/>
+              <circle cx="60" cy="86" r="11"/>
+            </g>
+            <circle cx="56" cy="42" r="3.4" fill="#fff" opacity=".3"/>
+            <path d="M60 34c-5-4-11-4-15-1 4 4 10 5 15 1Zm0 0c5-4 11-4 15-1-4 4-10 5-15 1Zm0 0V16" stroke="#2F6B4F" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><radialGradient id="pb3" cx=".35" cy=".3" r=".9">
+              <stop stop-color="#FF9AAF"/><stop offset=".55" stop-color="#E23A63"/><stop offset="1" stop-color="#8C1C46"/>
+            </radialGradient></defs>
+          </svg>
+        </div>
+        <h3 class="prod__name" data-i18n="p3.name">Raspberries</h3>
+        <p class="prod__desc" data-i18n="p3.desc">The most fragile line we handle, and the one where cold chain discipline shows. Tight loading windows, pre-cooled, moved fast.</p>
+        <div class="prod__meta">
+          <span class="prod__tag">125g–250g</span>
+          <span class="prod__tag" data-i18n="p3.t2">Pre-cooled</span>
+          <span class="prod__tag" data-i18n="p3.t3">Air · Reefer</span>
+        </div>
+      </article>
+
+      <article class="prod" style="--prod-grad:linear-gradient(160deg,#5C1A45,#1B0714)">
+        <span class="prod__idx">/ 04</span>
+        <div class="prod__art">
+          <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <g fill="url(#pb4)">
+              <circle cx="60" cy="42" r="10"/><circle cx="48" cy="52" r="10"/><circle cx="72" cy="52" r="10"/>
+              <circle cx="60" cy="60" r="10"/><circle cx="44" cy="68" r="10"/><circle cx="76" cy="68" r="10"/>
+              <circle cx="60" cy="78" r="10"/><circle cx="49" cy="86" r="9"/><circle cx="71" cy="86" r="9"/>
+            </g>
+            <circle cx="56" cy="39" r="3" fill="#fff" opacity=".26"/>
+            <path d="M60 30c-5-4-11-4-15-1 4 4 10 5 15 1Zm0 0c5-4 11-4 15-1-4 4-10 5-15 1Zm0 0V14" stroke="#4E9E77" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><radialGradient id="pb4" cx=".35" cy=".3" r=".9">
+              <stop stop-color="#A45C8C"/><stop offset=".5" stop-color="#5C1A45"/><stop offset="1" stop-color="#1F0716"/>
+            </radialGradient></defs>
+          </svg>
+        </div>
+        <h3 class="prod__name" data-i18n="p4.name">Blackberries</h3>
+        <p class="prod__desc" data-i18n="p4.desc">Year-round cover through complementary origins. Specified on drupelet integrity and reversion risk, not size alone.</p>
+        <div class="prod__meta">
+          <span class="prod__tag">125g–300g</span>
+          <span class="prod__tag" data-i18n="p4.t2">Programme</span>
+          <span class="prod__tag" data-i18n="p4.t3">Reefer</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TWO WAYS TO BUY ===== -->
+<section class="section is-dark" id="trade">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head__row">
+        <div>
+          <span class="eyebrow" data-i18n="tr.eyebrow">02 — How you buy</span>
+          <h2 class="split" data-split data-i18n-html="tr.h2">Two ways to secure <span class="ital">your volume.</span></h2>
+        </div>
+        <p class="lead" data-reveal data-i18n="tr.lead">
+          Most buyers need both: a programme that protects the core, and a trader who can
+          move on the rest. We run the two side by side.
+        </p>
+      </div>
+    </div>
+
+    <div class="val-grid" style="grid-template-columns:1fr" data-stagger>
+      <div class="val" style="padding:clamp(1.8rem,3.5vw,3rem)">
+        <div class="val__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg>
+        </div>
+        <h3 data-i18n="tr.spotName">Spot market trades</h3>
+        <p data-i18n="tr.spotDesc">For the weeks when the market moves faster than a plan. We monitor field availability and price direction across our origins daily, and come back with what is genuinely loadable — with a landed price, not an indication.</p>
+        <div class="prod__meta" style="border-top-color:var(--line)">
+          <span class="prod__tag" data-i18n="tr.spotT1">Same-week loading</span>
+          <span class="prod__tag" data-i18n="tr.spotT2">Live price direction</span>
+          <span class="prod__tag" data-i18n="tr.spotT3">Single &amp; mixed pallets</span>
+        </div>
+      </div>
+
+      <div class="val" style="padding:clamp(1.8rem,3.5vw,3rem)">
+        <div class="val__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+        </div>
+        <h3 data-i18n="tr.progName">Seasonal programmes</h3>
+        <p data-i18n="tr.progDesc">Volume committed ahead of the window, allocated across growers so one field failure does not become your shortfall. Fixed specification, agreed pricing mechanism, weekly forecast against plan.</p>
+        <div class="prod__meta" style="border-top-color:var(--line)">
+          <span class="prod__tag" data-i18n="tr.progT1">Committed volume</span>
+          <span class="prod__tag" data-i18n="tr.progT2">Multi-grower cover</span>
+          <span class="prod__tag" data-i18n="tr.progT3">Weekly forecasting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AVAILABILITY CALENDAR ===== -->
+<section class="section" id="availability">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head__row">
+        <div>
+          <span class="eyebrow" data-i18n="av.eyebrow">03 — Availability</span>
+          <h2 class="split" data-split data-i18n-html="av.h2">What we can load, <span class="ital">month by month.</span></h2>
+        </div>
+        <p class="lead" data-reveal data-i18n="av.lead">
+          Indicative windows across our combined origin network. The current month is
+          highlighted — ask us for the live position on any week.
+        </p>
+      </div>
+    </div>
+
+    <div class="cal" id="cal" data-reveal>
+      <div class="cal__scroll">
+        <table class="cal__grid" id="calGrid">
+          <caption class="visually-hidden" data-i18n="av.caption">Indicative monthly availability by berry line</caption>
+          <thead><tr id="calHead"><th scope="col" data-i18n="av.line">Line</th></tr></thead>
+          <tbody id="calBody"></tbody>
+        </table>
+      </div>
+      <div class="cal__legend">
+        <div><span class="cal__key"></span> <span data-i18n="av.peak">Peak volume</span></div>
+        <div><span class="cal__key cal__key--mid"></span> <span data-i18n="av.mid">Limited / shoulder</span></div>
+        <div><span class="cal__key cal__key--none"></span> <span data-i18n="av.none">Out of window</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="section is-dark" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head__row">
+        <div>
+          <span class="eyebrow" data-i18n="pr.eyebrow">04 — How we work</span>
+          <h2 class="split" data-split data-i18n-html="pr.h2">From brief to <span class="ital">delivered pallet.</span></h2>
+        </div>
+        <p class="lead" data-reveal data-i18n="pr.lead">
+          Four steps, no hand-offs. The person who prices your order is the person who
+          tells you when it loads.
+        </p>
+      </div>
+    </div>
+
+    <div class="proc" id="proc">
+      <div class="proc__line" aria-hidden="true"><i id="procFill"></i></div>
+
+      <div class="proc__step" data-step>
+        <div class="proc__num">01</div>
+        <span class="proc__tag" data-i18n="pr.tag1">Day 0</span>
+        <h3 data-i18n="pr.h1">Brief &amp; specification</h3>
+        <p data-i18n="pr.d1">Variety, calibre, packaging, volume, delivery window and destination. We tell you what is realistic that week — not what sounds good on a spec sheet.</p>
+      </div>
+
+      <div class="proc__step" data-step>
+        <div class="proc__num">02</div>
+        <span class="proc__tag" data-i18n="pr.tag2">Within 24h</span>
+        <h3 data-i18n="pr.h2step">Grower selection &amp; pricing</h3>
+        <p data-i18n="pr.d2">We go back through the grower network, check field availability against your spec, read the market direction, and return a landed price with the origin named.</p>
+      </div>
+
+      <div class="proc__step" data-step>
+        <div class="proc__num">03</div>
+        <span class="proc__tag" data-i18n="pr.tag3">Pre-load</span>
+        <h3 data-i18n="pr.h3">Quality control &amp; loading</h3>
+        <p data-i18n="pr.d3">Pre-shipment checks against the agreed specification. Photos, pallet detail and temperature record before the truck leaves the packhouse — not after it arrives.</p>
+      </div>
+
+      <div class="proc__step" data-step>
+        <div class="proc__num">04</div>
+        <span class="proc__tag" data-i18n="pr.tag4">In transit</span>
+        <h3 data-i18n="pr.h4">Cold chain &amp; delivery</h3>
+        <p data-i18n="pr.d4">Temperature-controlled transport, complete documentation, and one point of contact tracking the load until it is on your dock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ORIGINS ===== -->
+<section class="section" id="origins">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head__row">
+        <div>
+          <span class="eyebrow" data-i18n="or.eyebrow">05 — Origins</span>
+          <h2 class="split" data-split data-i18n-html="or.h2">We follow <span class="ital">the sun.</span></h2>
+        </div>
+        <p class="lead" data-reveal data-i18n="or.lead">
+          Northern and southern hemisphere origins run back to back, so the programme does
+          not stop when one window closes.
+        </p>
+      </div>
+    </div>
+
+    <div class="orig">
+      <div class="orig__map" data-reveal="scale">
+        <svg viewBox="0 0 520 400" role="img" data-i18n-attr="aria-label:or.mapAlt">
+          <defs>
+            <radialGradient id="globe" cx=".34" cy=".28" r=".85">
+              <stop stop-color="#3A1329"/><stop offset=".6" stop-color="#260C1B"/><stop offset="1" stop-color="#160610"/>
+            </radialGradient>
+          </defs>
+
+          <circle cx="260" cy="200" r="150" fill="url(#globe)"/>
+          <circle cx="260" cy="200" r="150" fill="none" stroke="currentColor" stroke-opacity=".18"/>
+
+          <g stroke="currentColor" stroke-opacity=".14" fill="none">
+            <ellipse cx="260" cy="200" rx="150" ry="150"/>
+            <path d="M118 152h284M110 200h300M118 248h284M140 104h240M140 296h240"/>
+          </g>
+          <g stroke="currentColor" stroke-opacity=".12" fill="none">
+            <ellipse cx="260" cy="200" rx="50" ry="150"/>
+            <ellipse cx="260" cy="200" rx="100" ry="150"/>
+            <line x1="260" y1="50" x2="260" y2="350"/>
+          </g>
+          <line x1="110" y1="200" x2="410" y2="200" stroke="#C08A2E" stroke-opacity=".55" stroke-dasharray="5 6"/>
+          <text x="414" y="204" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.4" fill="#C08A2E" opacity=".8">EQ</text>
+
+          <circle cx="260" cy="200" r="172" fill="none" stroke="currentColor" stroke-opacity=".16" stroke-dasharray="3 9"/>
+
+          <g class="map-pin"><circle class="halo" cx="244" cy="140" r="5"/><circle class="core" cx="244" cy="140" r="5"/><text x="254" y="136" data-i18n="map.es">Spain</text></g>
+          <g class="map-pin"><circle class="halo" cx="228" cy="152" r="5"/><circle class="core" cx="228" cy="152" r="5"/><text x="150" y="150" data-i18n="map.pt">Portugal</text></g>
+          <g class="map-pin"><circle class="halo" cx="236" cy="176" r="5"/><circle class="core" cx="236" cy="176" r="5"/><text x="160" y="180" data-i18n="map.ma">Morocco</text></g>
+          <g class="map-pin"><circle class="halo" cx="176" cy="248" r="5"/><circle class="core" cx="176" cy="248" r="5"/><text x="186" y="244" data-i18n="map.pe">Peru</text></g>
+          <g class="map-pin"><circle class="halo" cx="186" cy="290" r="5"/><circle class="core" cx="186" cy="290" r="5"/><text x="196" y="294" data-i18n="map.cl">Chile</text></g>
+          <g class="map-pin"><circle class="halo" cx="292" cy="286" r="5"/><circle class="core" cx="292" cy="286" r="5"/><text x="302" y="290" data-i18n="map.za">South Africa</text></g>
+          <g class="map-pin"><circle class="halo" cx="150" cy="176" r="5"/><circle class="core" cx="150" cy="176" r="5"/><text x="90" y="170" data-i18n="map.mx">Mexico</text></g>
+        </svg>
+      </div>
+
+      <ul class="orig__list" data-stagger>
+        <li class="orig__item"><span class="orig__flag">ES</span><span class="orig__name"><span data-i18n="or.n1">Huelva, Spain</span><small data-i18n="or.s1">Core European window · all four lines</small></span><span class="orig__win" data-i18n="or.w1">Nov — Jun</span></li>
+        <li class="orig__item"><span class="orig__flag">PT</span><span class="orig__name"><span data-i18n="or.n2">Portugal</span><small data-i18n="or.s2">Blueberries &amp; raspberries</small></span><span class="orig__win" data-i18n="or.w2">Sep — Jun</span></li>
+        <li class="orig__item"><span class="orig__flag">MA</span><span class="orig__name"><span data-i18n="or.n3">Morocco</span><small data-i18n="or.s3">Early and late shoulder cover</small></span><span class="orig__win" data-i18n="or.w3">Nov — May</span></li>
+        <li class="orig__item"><span class="orig__flag">PE</span><span class="orig__name"><span data-i18n="or.n4">Peru</span><small data-i18n="or.s4">Counter-season blueberries</small></span><span class="orig__win" data-i18n="or.w4">Aug — Mar</span></li>
+        <li class="orig__item"><span class="orig__flag">CL</span><span class="orig__name"><span data-i18n="or.n5">Chile</span><small data-i18n="or.s5">Southern hemisphere programme</small></span><span class="orig__win" data-i18n="or.w5">Nov — Mar</span></li>
+        <li class="orig__item"><span class="orig__flag">ZA</span><span class="orig__name"><span data-i18n="or.n6">South Africa</span><small data-i18n="or.s6">Blueberry volume, air &amp; sea</small></span><span class="orig__win" data-i18n="or.w6">Aug — Feb</span></li>
+        <li class="orig__item"><span class="orig__flag">MX</span><span class="orig__name"><span data-i18n="or.n7">Mexico</span><small data-i18n="or.s7">Blackberry &amp; raspberry continuity</small></span><span class="orig__win" data-i18n="or.w7">Oct — May</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUALITY + STATS ===== -->
+<section class="section is-dark" id="quality">
+  <div class="wrap">
+
+    <div class="stats" data-stagger style="margin-bottom:clamp(3rem,6vw,5rem)">
+      <div class="stat"><b data-count="4">0</b><span data-i18n="st.1">Core berry lines</span></div>
+      <div class="stat"><b data-count="7">0</b><span data-i18n="st.2">Sourcing origins</span></div>
+      <div class="stat"><b data-count="52">0</b><span data-i18n="st.3">Weeks of coverage</span></div>
+      <div class="stat"><b data-count="24" data-suffix="h">0</b><span data-i18n="st.4">Typical quote response</span></div>
+    </div>
+
+    <div class="sec-head">
+      <div class="sec-head__row">
+        <div>
+          <span class="eyebrow" data-i18n="q.eyebrow">06 — Quality</span>
+          <h2 class="split" data-split data-i18n-html="q.h2">Specified before it is <span class="ital">offered.</span></h2>
+        </div>
+        <p class="lead" data-reveal data-i18n="q.lead">
+          Trading berries is a quality problem before it is a price problem. Everything below
+          exists to make sure the fruit that arrives is the fruit that was agreed.
+        </p>
+      </div>
+    </div>
+
+    <div class="val-grid" data-stagger>
+      <div class="val">
+        <div class="val__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3 data-i18n="v1.h">Grower-direct network</h3>
+        <p data-i18n="v1.p">We buy from growers we have visited, not from a screen. That is what makes an honest availability answer possible.</p>
+      </div>
+      <div class="val">
+        <div class="val__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"/><path d="M9 15h3l9-9-3-3-9 9v3Z"/></svg></div>
+        <h3 data-i18n="v2.h">Spec-led QC</h3>
+        <p data-i18n="v2.p">Calibre, brix, firmness, colour and packaging agreed in writing, then checked against that document before loading.</p>
+      </div>
+      <div class="val">
+        <div class="val__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M5 8l7-6 7 6M5 16l7 6 7-6"/></svg></div>
+        <h3 data-i18n="v3.h">Cold chain integrity</h3>
+        <p data-i18n="v3.p">Pre-cooling, loading temperature and transit monitoring recorded per shipment — the difference between arrival and rejection on raspberries.</p>
+      </div>
+      <div class="val">
+        <div class="val__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></div>
+        <h3 data-i18n="v4.h">Market intelligence</h3>
+        <p data-i18n="v4.p">Weekly read on volumes, pricing and weather risk across our origins, shared with programme customers before it hits the market.</p>
+      </div>
+      <div class="val">
+        <div class="val__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3 data-i18n="v5.h">Multi-origin cover</h3>
+        <p data-i18n="v5.p">Programme volume split across origins and growers, so a single weather event does not become a shortfall on your shelf.</p>
+      </div>
+      <div class="val">
+        <div class="val__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3 data-i18n="v6.h">Available 365</h3>
+        <p data-i18n="v6.p">Fruit does not keep office hours. One number, one contact, from first enquiry through to delivery confirmation.</p>
+      </div>
+    </div>
+
+    <h4 class="certs__title" data-i18n="q.certsTitle">Standards our supply base works to</h4>
+    <div class="certs" data-stagger>
+      <span class="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg> GLOBALG.A.P.</span>
+      <span class="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg> GRASP</span>
+      <span class="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg> BRCGS</span>
+      <span class="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg> IFS Food</span>
+      <span class="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg> Organic (EU)</span>
+      <span class="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg> Sedex / SMETA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="t.eyebrow">07 — References</span>
+      <h2 class="split" data-split data-i18n-html="t.h2" style="margin-top:1rem">What buyers <span class="ital">say.</span></h2>
+    </div>
+
+    <div class="quotes" id="quotes" data-reveal>
+      <div class="quotes__viewport">
+        <div class="quotes__track" id="quotesTrack">
+          <div class="quote">
+            <blockquote data-i18n="t.q1">They tell us what is actually loadable that week, which is rarer than it should be.</blockquote>
+            <div class="quote__by">
+              <span class="quote__av" aria-hidden="true">CB</span>
+              <div class="quote__who">
+                <b data-i18n="t.n1">Category buyer</b>
+                <span data-i18n="t.r1">UK retail programme</span>
+              </div>
+            </div>
+          </div>
+          <div class="quote">
+            <blockquote data-i18n="t.q2">The programme held through a bad February. That is the whole reason we moved volume across.</blockquote>
+            <div class="quote__by">
+              <span class="quote__av" aria-hidden="true">PM</span>
+              <div class="quote__who">
+                <b data-i18n="t.n2">Procurement manager</b>
+                <span data-i18n="t.r2">Northern European importer</span>
+              </div>
+            </div>
+          </div>
+          <div class="quote">
+            <blockquote data-i18n="t.q3">One contact, one answer. No chasing three people to find out where a truck is.</blockquote>
+            <div class="quote__by">
+              <span class="quote__av" aria-hidden="true">SD</span>
+              <div class="quote__who">
+                <b data-i18n="t.n3">Supply chain director</b>
+                <span data-i18n="t.r3">Foodservice distributor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="quotes__ctrl">
+        <button class="qbtn" id="qPrev" data-i18n-attr="aria-label:a11y.prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+        <button class="qbtn" id="qNext" data-i18n-attr="aria-label:a11y.next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <div class="quotes__dots" id="qDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA + CONTACT ===== -->
+<section class="section is-dark" id="contact">
+  <div class="wrap">
+
+    <div class="cta-band" data-reveal="scale" style="margin-bottom:clamp(3.5rem,7vw,6rem)">
+      <div class="cta-band__glow" aria-hidden="true"></div>
+      <span class="eyebrow" style="justify-content:center" data-i18n="cb.eyebrow">Let's trade</span>
+      <h2 style="margin-top:1rem" data-i18n="cb.h2">Tell us the spec. We'll tell you what's loadable.</h2>
+      <p data-i18n="cb.p">Send us a line, a volume and a delivery window. You'll have a named origin and a landed price back — usually inside 24 hours.</p>
+      <div class="btn-group">
+        <a href="mailto:david@365berries.com" class="btn">
+          <span data-i18n="cb.email">Email David</span>
+          <svg class="btn__ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="tel:+34612584209" class="btn btn--ghost">+34 612 584 209</a>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div class="contact__info" data-stagger>
+        <div>
+          <span class="eyebrow" data-i18n="c.eyebrow">08 — Contact</span>
+          <h2 style="margin-top:1rem" data-i18n-html="c.h2">Always available. <span class="ital">365.</span></h2>
+        </div>
+
+        <div class="cinfo">
+          <span class="cinfo__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+          <div class="cinfo__txt">
+            <span class="cinfo__label" data-i18n="c.emailL">Email</span>
+            <b><a href="mailto:david@365berries.com">david@365berries.com</a></b>
+          </div>
+        </div>
+        <div class="cinfo">
+          <span class="cinfo__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+          <div class="cinfo__txt">
+            <span class="cinfo__label" data-i18n="c.phoneL">Phone / WhatsApp</span>
+            <b><a href="tel:+34612584209">+34 612 584 209</a></b>
+          </div>
+        </div>
+        <div class="cinfo">
+          <span class="cinfo__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M10 21v-6h4v6"/></svg></span>
+          <div class="cinfo__txt">
+            <span class="cinfo__label" data-i18n="c.compL">Company</span>
+            <b>365Berries SL · NIF B72697436</b>
+          </div>
+        </div>
+        <div class="cinfo">
+          <span class="cinfo__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div class="cinfo__txt">
+            <span class="cinfo__label" data-i18n="c.hoursL">Hours</span>
+            <b data-i18n="c.hoursV">Always available — 365</b>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" id="quoteForm" novalidate data-reveal>
+        <div class="form__row">
+          <div class="field">
+            <label for="f-name" data-i18n="f.name">Your name *</label>
+            <input type="text" id="f-name" name="name" required autocomplete="name" data-i18n-attr="placeholder:f.phName" placeholder="Jane Doe">
+            <span class="field__err" data-i18n="f.eName">Please enter your name.</span>
+          </div>
+          <div class="field">
+            <label for="f-company" data-i18n="f.company">Company</label>
+            <input type="text" id="f-company" name="company" autocomplete="organization" data-i18n-attr="placeholder:f.phCompany" placeholder="Company Ltd">
+            <span class="field__err"></span>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="f-email" data-i18n="f.email">Email *</label>
+            <input type="email" id="f-email" name="email" required autocomplete="email" data-i18n-attr="placeholder:f.phEmail" placeholder="you@company.com">
+            <span class="field__err" data-i18n="f.eEmail">Please enter a valid email address.</span>
+          </div>
+          <div class="field">
+            <label for="f-country" data-i18n="f.country">Delivery country</label>
+            <input type="text" id="f-country" name="country" autocomplete="country-name" data-i18n-attr="placeholder:f.phCountry" placeholder="Netherlands">
+            <span class="field__err"></span>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="f-product" data-i18n="f.product">Product *</label>
+            <select id="f-product" name="product" required>
+              <option value="" data-i18n="f.select">Select a line…</option>
+              <option data-i18n="p1.name">Blueberries</option>
+              <option data-i18n="p2.name">Strawberries</option>
+              <option data-i18n="p3.name">Raspberries</option>
+              <option data-i18n="p4.name">Blackberries</option>
+              <option data-i18n="f.mixed">Mixed / multiple lines</option>
+            </select>
+            <span class="field__err" data-i18n="f.eProduct">Please choose a product.</span>
+          </div>
+          <div class="field">
+            <label for="f-type" data-i18n="f.type">Enquiry type</label>
+            <select id="f-type" name="type">
+              <option data-i18n="f.spot">Spot trade</option>
+              <option data-i18n="f.prog">Seasonal programme</option>
+              <option data-i18n="f.general">General enquiry</option>
+            </select>
+            <span class="field__err"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-msg" data-i18n="f.msg">Volume, format &amp; delivery window *</label>
+          <textarea id="f-msg" name="message" required data-i18n-attr="placeholder:f.phMsg" placeholder="e.g. 2 pallets/week 125g blueberries, 14–16mm, Class I, weeks 38–46, delivered Rotterdam."></textarea>
+          <span class="field__err" data-i18n="f.eMsg">Tell us roughly what you need.</span>
+        </div>
+
+        <div class="form__ok" id="formOk" role="status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+          <span data-i18n="f.ok">Thanks — enquiry noted. In the live build this posts to your inbox or CRM.</span>
+        </div>
+
+        <div class="btn-group" style="margin-top:.4rem">
+          <button type="submit" class="btn">
+            <span data-i18n="f.send">Send enquiry</span>
+            <svg class="btn__ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="form__note" data-i18n="f.note">We reply to every enquiry, usually within one working day.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__col">
+        <a href="#top" class="brand" data-i18n-attr="aria-label:a11y.home">
+          <svg class="brand__logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="13.5" cy="28" r="8" fill="url(#blueF)"/>
+            <circle cx="26.5" cy="28" r="8" fill="url(#blackF)"/>
+            <circle cx="20" cy="18.5" r="8" fill="url(#raspF)"/>
+            <circle cx="17" cy="15.5" r="2.4" fill="#fff" opacity=".32"/>
+            <ellipse cx="14.8" cy="8.4" rx="5" ry="2.5" fill="#4E9E77" transform="rotate(-20 14.8 8.4)"/>
+            <ellipse cx="25.2" cy="8.4" rx="5" ry="2.5" fill="#4E9E77" transform="rotate(20 25.2 8.4)"/>
+            <path d="M20 11.5V5.5" stroke="#2F6B4F" stroke-width="2.2" stroke-linecap="round"/>
+            <defs>
+              <radialGradient id="blueF" cx=".35" cy=".3" r=".9">
+                <stop stop-color="#8887D8"/><stop offset="1" stop-color="#3E3D78"/>
+              </radialGradient>
+              <radialGradient id="blackF" cx=".35" cy=".3" r=".9">
+                <stop stop-color="#A45C8C"/><stop offset="1" stop-color="#4A1234"/>
+              </radialGradient>
+              <radialGradient id="raspF" cx=".35" cy=".3" r=".9">
+                <stop stop-color="#FF9AAF"/><stop offset=".6" stop-color="#E23A63"/><stop offset="1" stop-color="#A81B43"/>
+              </radialGradient>
+            </defs>
+          </svg>
+          <span class="brand__txt">
+            <span class="brand__name">365 <b>Berries</b></span>
+            <span class="brand__sub" data-i18n="brand.sub">Fruit Sourcing &amp; Trade</span>
+          </span>
+        </a>
+        <p class="footer__blurb" data-i18n="ft.blurb">Grower-direct berry sourcing from Spain. Spot market trades and seasonal programmes, available 365 days a year.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4 data-i18n="ft.products">Products</h4>
+        <ul>
+          <li><a href="#products" data-i18n="p1.name">Blueberries</a></li>
+          <li><a href="#products" data-i18n="p2.name">Strawberries</a></li>
+          <li><a href="#products" data-i18n="p3.name">Raspberries</a></li>
+          <li><a href="#products" data-i18n="p4.name">Blackberries</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4 data-i18n="ft.company">Company</h4>
+        <ul>
+          <li><a href="#trade" data-i18n="ft.buy">How you buy</a></li>
+          <li><a href="#availability" data-i18n="nav.availability">Availability</a></li>
+          <li><a href="#process" data-i18n="nav.process">How we work</a></li>
+          <li><a href="#origins" data-i18n="nav.origins">Origins</a></li>
+          <li><a href="#quality" data-i18n="nav.quality">Quality</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4 data-i18n="ft.touch">Get in touch</h4>
+        <ul>
+          <li><a href="mailto:david@365berries.com">david@365berries.com</a></li>
+          <li><a href="tel:+34612584209">+34 612 584 209</a></li>
+          <li><a href="#contact" data-i18n="cta.quote">Request a quote</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bot">
+      <span>© <span id="year">2026</span> 365Berries SL · NIF B72697436. <span data-i18n="ft.rights">All rights reserved.</span></span>
+      <span class="footer__legal">
+        <a href="privacy.html" data-i18n="ft.privacy">Privacy Policy</a>
+        <a href="terms.html" data-i18n="ft.terms">Terms</a>
+        <a href="cookies.html" data-i18n="ft.cookies">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" data-i18n-attr="aria-label:a11y.top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

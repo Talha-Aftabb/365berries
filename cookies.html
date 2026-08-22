@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--
+  ⚠️  TEMPLATE — NOT LEGAL ADVICE.
+  This describes what the site ACTUALLY does today: no cookies, one localStorage
+  key for language, and webfonts loaded from Google. If analytics, a chat widget,
+  a pixel or embedded video are added later, this page must be updated AND a
+  consent banner becomes legally required. See README section 3.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cookie Policy — 365 Berries</title>
+<meta name="description" content="What 365Berries SL stores in your browser, and why.">
+<meta name="theme-color" content="#150710">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='13.5' cy='28' r='8.5' fill='%234B4A8F'/%3E%3Ccircle cx='26.5' cy='28' r='8.5' fill='%235C1A45'/%3E%3Ccircle cx='20' cy='18' r='8.5' fill='%23E23A63'/%3E%3Cellipse cx='14.8' cy='8.4' rx='5' ry='2.5' fill='%234E9E77' transform='rotate(-20 14.8 8.4)'/%3E%3Cellipse cx='25.2' cy='8.4' rx='5' ry='2.5' fill='%234E9E77' transform='rotate(20 25.2 8.4)'/%3E%3Cpath d='M20 11V5' stroke='%232F6B4F' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="loaded" data-title-key="legal.metaCookies" data-desc-key="legal.descCookies">
+
+<header class="header header--solid">
+  <div class="header__inner">
+    <a href="index.html" class="brand" data-i18n-attr="aria-label:a11y.home">
+      <svg class="brand__logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="13.5" cy="28" r="8" fill="url(#blueL)"/>
+        <circle cx="26.5" cy="28" r="8" fill="url(#blackL)"/>
+        <circle cx="20" cy="18.5" r="8" fill="url(#raspL)"/>
+        <circle cx="17" cy="15.5" r="2.4" fill="#fff" opacity=".32"/>
+        <ellipse cx="14.8" cy="8.4" rx="5" ry="2.5" fill="#4E9E77" transform="rotate(-20 14.8 8.4)"/>
+        <ellipse cx="25.2" cy="8.4" rx="5" ry="2.5" fill="#4E9E77" transform="rotate(20 25.2 8.4)"/>
+        <path d="M20 11.5V5.5" stroke="#2F6B4F" stroke-width="2.2" stroke-linecap="round"/>
+        <defs>
+          <radialGradient id="blueL" cx=".35" cy=".3" r=".9"><stop stop-color="#8887D8"/><stop offset="1" stop-color="#3E3D78"/></radialGradient>
+          <radialGradient id="blackL" cx=".35" cy=".3" r=".9"><stop stop-color="#A45C8C"/><stop offset="1" stop-color="#4A1234"/></radialGradient>
+          <radialGradient id="raspL" cx=".35" cy=".3" r=".9"><stop stop-color="#FF9AAF"/><stop offset=".6" stop-color="#E23A63"/><stop offset="1" stop-color="#A81B43"/></radialGradient>
+        </defs>
+      </svg>
+      <span class="brand__txt">
+        <span class="brand__name">365 <b>Berries</b></span>
+        <span class="brand__sub" data-i18n="brand.sub">Fruit Sourcing &amp; Trade</span>
+      </span>
+    </a>
+
+    <div class="header__right">
+      <div class="lang" id="lang" role="group" data-i18n-attr="aria-label:a11y.lang">
+        <button class="lang__btn is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang__btn" type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a href="index.html" class="back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        <span data-i18n="legal.back">Back to site</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="legal">
+  <div class="wrap">
+    <div class="legal__head">
+      <span class="eyebrow" data-i18n="legal.eyebrow">Legal</span>
+      <h1 data-i18n="legal.cookiesTitle">Cookie Policy</h1>
+      <p class="legal__meta"><span data-i18n="legal.updated">Last updated</span> · 22.08.2026</p>
+    </div>
+
+    <!-- ================= ENGLISH ================= -->
+    <div class="legal__body" data-lang-block="en">
+      <h2>1. The short version</h2>
+      <p>
+        <strong>This site sets no cookies.</strong> It stores one item in your browser to
+        remember whether you prefer English or Spanish, and it loads its typefaces from
+        Google Fonts. There is no advertising, no analytics and no tracking of any kind.
+      </p>
+
+      <h2>2. What we store in your browser</h2>
+      <div class="legal__scroll">
+        <table class="legal__table">
+          <thead><tr><th>Name</th><th>Type</th><th>Purpose</th><th>Duration</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>lang</code></td>
+              <td>Local storage (not a cookie)</td>
+              <td>Remembers your language choice so the site opens in the right one next time.</td>
+              <td>Until you clear your browser data</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        This is a strictly necessary functional preference that you set yourself, so it does
+        not require consent under Article 22.2 of the LSSI-CE. It contains nothing but the
+        text <code>en</code> or <code>es</code>, and it is never sent to us or to anyone else.
+      </p>
+
+      <h2>3. Third-party services</h2>
+      <h3>Google Fonts</h3>
+      <p>
+        The typefaces on this site are served by Google Fonts. When a page loads, your browser
+        requests those font files from Google's servers, which means <strong>your IP address is
+        transmitted to Google</strong>. Google states that it does not set cookies or use this
+        data for advertising. See
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's
+        privacy policy</a>.
+      </p>
+      <p>
+        If you would prefer no data to reach Google at all, the fonts can be hosted directly on
+        this site instead. Contact us and we will tell you the current arrangement.
+      </p>
+      <h3>Hosting</h3>
+      <p>
+        Our hosting provider processes standard server logs (IP address, browser type, pages
+        requested) for security and to keep the site running. These are not used to identify or
+        profile visitors.
+      </p>
+
+      <h2>4. What we do not use</h2>
+      <ul>
+        <li>No Google Analytics or any other analytics package.</li>
+        <li>No advertising or remarketing pixels.</li>
+        <li>No social media trackers or embedded feeds.</li>
+        <li>No chat widgets or session recording.</li>
+      </ul>
+      <p>
+        If that changes, this page will be updated and a consent banner will be shown before
+        any non-essential technology is loaded.
+      </p>
+
+      <h2>5. Managing storage in your browser</h2>
+      <p>
+        You can clear or block local storage and cookies in your browser settings. Doing so
+        will simply mean the site forgets your language preference. Instructions:
+        <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Chrome</a>,
+        <a href="https://support.mozilla.org/kb/clear-cookies-and-site-data-firefox" target="_blank" rel="noopener noreferrer">Firefox</a>,
+        <a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari</a>,
+        <a href="https://support.microsoft.com/microsoft-edge" target="_blank" rel="noopener noreferrer">Edge</a>.
+      </p>
+
+      <h2>6. More information</h2>
+      <p>
+        See our <a href="privacy.html">Privacy Policy</a> for how we handle personal data, or
+        write to <a href="mailto:david@365berries.com">david@365berries.com</a>.
+      </p>
+    </div>
+
+    <!-- ================= ESPAÑOL ================= -->
+    <div class="legal__body" data-lang-block="es">
+      <h2>1. Resumen</h2>
+      <p>
+        <strong>Esta web no instala cookies.</strong> Guarda un único dato en tu navegador para
+        recordar si prefieres español o inglés, y carga sus tipografías desde Google Fonts. No
+        hay publicidad, ni analítica, ni seguimiento de ningún tipo.
+      </p>
+
+      <h2>2. Qué guardamos en tu navegador</h2>
+      <div class="legal__scroll">
+        <table class="legal__table">
+          <thead><tr><th>Nombre</th><th>Tipo</th><th>Finalidad</th><th>Duración</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>lang</code></td>
+              <td>Almacenamiento local (no es una cookie)</td>
+              <td>Recuerda tu elección de idioma para que la web se abra en el correcto.</td>
+              <td>Hasta que borres los datos del navegador</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Se trata de una preferencia funcional estrictamente necesaria que configuras tú, por lo
+        que no requiere consentimiento conforme al artículo 22.2 de la LSSI-CE. Solo contiene
+        el texto <code>en</code> o <code>es</code> y nunca se nos envía ni a nosotros ni a terceros.
+      </p>
+
+      <h2>3. Servicios de terceros</h2>
+      <h3>Google Fonts</h3>
+      <p>
+        Las tipografías de esta web las sirve Google Fonts. Al cargar una página, tu navegador
+        solicita esos archivos a los servidores de Google, lo que implica que <strong>tu
+        dirección IP se transmite a Google</strong>. Google indica que no instala cookies ni
+        usa estos datos con fines publicitarios. Consulta la
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">política
+        de privacidad de Google</a>.
+      </p>
+      <p>
+        Si prefieres que no llegue ningún dato a Google, las tipografías pueden alojarse
+        directamente en esta web. Escríbenos y te indicamos la configuración actual.
+      </p>
+      <h3>Alojamiento</h3>
+      <p>
+        Nuestro proveedor de alojamiento trata registros de servidor estándar (dirección IP,
+        tipo de navegador, páginas solicitadas) por seguridad y para mantener el servicio. No
+        se utilizan para identificar ni perfilar a los visitantes.
+      </p>
+
+      <h2>4. Qué no utilizamos</h2>
+      <ul>
+        <li>Ni Google Analytics ni ninguna otra herramienta de analítica.</li>
+        <li>Ningún píxel publicitario ni de remarketing.</li>
+        <li>Ningún rastreador de redes sociales ni contenido incrustado.</li>
+        <li>Ningún chat ni grabación de sesiones.</li>
+      </ul>
+      <p>
+        Si esto cambiara, actualizaríamos esta página y mostraríamos un banner de
+        consentimiento antes de cargar cualquier tecnología no esencial.
+      </p>
+
+      <h2>5. Cómo gestionarlo en tu navegador</h2>
+      <p>
+        Puedes borrar o bloquear el almacenamiento local y las cookies desde la configuración
+        de tu navegador. Si lo haces, la web simplemente olvidará tu preferencia de idioma.
+        Instrucciones:
+        <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Chrome</a>,
+        <a href="https://support.mozilla.org/kb/clear-cookies-and-site-data-firefox" target="_blank" rel="noopener noreferrer">Firefox</a>,
+        <a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari</a>,
+        <a href="https://support.microsoft.com/microsoft-edge" target="_blank" rel="noopener noreferrer">Edge</a>.
+      </p>
+
+      <h2>6. Más información</h2>
+      <p>
+        Consulta nuestra <a href="privacy.html">Política de privacidad</a> para saber cómo
+        tratamos los datos personales, o escribe a
+        <a href="mailto:david@365berries.com">david@365berries.com</a>.
+      </p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__bot" style="border-top:1px solid rgba(255,255,255,.1)">
+      <span>© <span id="year">2026</span> 365Berries SL · NIF B72697436. <span data-i18n="ft.rights">All rights reserved.</span></span>
+      <span class="footer__legal">
+        <a href="privacy.html" data-i18n="ft.privacy">Privacy Policy</a>
+        <a href="terms.html" data-i18n="ft.terms">Terms</a>
+        <a href="cookies.html" data-i18n="ft.cookies">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

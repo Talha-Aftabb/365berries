@@ -730,7 +730,7 @@
         <div class="form__row">
           <div class="field">
             <label for="f-email" data-i18n="f.email">Email *</label>
-            <input type="email" id="f-email" name="email" required autocomplete="email" data-i18n-attr="placeholder:f.phEmail" placeholder="you@company.com">
+            <input type="email" id="f-email" name="email" autocomplete="email" data-i18n-attr="placeholder:f.phEmail" placeholder="you@company.com">
             <span class="field__err" data-i18n="f.eEmail">Please enter a valid email address.</span>
           </div>
           <div class="field">
@@ -770,18 +770,14 @@
           <span class="field__err" data-i18n="f.eMsg">Tell us roughly what you need.</span>
         </div>
 
-        <div class="form__ok" id="formOk" role="status">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
-          <span data-i18n="f.ok">Thanks — enquiry noted. In the live build this posts to your inbox or CRM.</span>
-        </div>
-
         <div class="btn-group" style="margin-top:.4rem">
           <button type="submit" class="btn">
-            <span data-i18n="f.send">Send enquiry</span>
-            <svg class="btn__ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <svg class="btn__ico" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.2 1.26-1.97 1.42-.53.11-1.21.2-3.52-.75-2.95-1.22-4.85-4.22-5-4.41-.14-.2-1.19-1.58-1.19-3.02s.75-2.14 1.02-2.43c.27-.29.58-.37.78-.37h.56c.18 0 .42-.03.66.5.24.55.83 1.99.9 2.13.07.15.12.32.02.51-.09.2-.14.32-.28.49l-.42.49c-.14.14-.28.29-.12.57.16.27.72 1.18 1.54 1.92 1.06.94 1.95 1.23 2.23 1.37.27.14.43.12.59-.07.16-.2.68-.79.86-1.07.18-.27.36-.22.61-.13.24.09 1.55.73 1.82.86.27.14.44.2.51.32.07.11.07.66-.17 1.34Z"/></svg>
+            <span data-i18n="f.sendWa">Send on WhatsApp</span>
           </button>
+          <button type="button" class="btn btn--ghost" id="copyEnquiry" data-i18n="f.copy">Copy enquiry</button>
         </div>
-        <p class="form__note" data-i18n="f.note">We reply to every enquiry, usually within one working day.</p>
+        <p class="form__note" data-i18n="f.note">Opens WhatsApp with your enquiry ready to send — nothing is stored on this site. We reply to every enquiry, usually within one working day.</p>
       </form>
     </div>
   </div>

@@ -490,7 +490,6 @@
   (function form() {
     var f = $('#quoteForm');
     if (!f) return;
-    var ok = $('#formOk');
 
     function fieldOf(input) { return input.closest('.field'); }
 
@@ -511,20 +510,60 @@
       });
     });
 
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var fields = $$('input, select, textarea', f);
+    // There is no backend. Instead of posting anywhere, the form composes the
+    // enquiry and hands it to WhatsApp (or the clipboard), so the qualifying
+    // questions still get answered and nothing is stored on this site.
+    var WHATSAPP = '34612584209';
+
+    function val(id) {
+      var el = document.getElementById(id);
+      return el && el.value ? el.value.trim() : '';
+    }
+
+    function buildMessage() {
+      var lines = [t('msg.title') || '365 Berries enquiry', ''];
+      function add(labelKey, value) {
+        if (value) lines.push((t(labelKey) || labelKey) + ': ' + value);
+      }
+      add('msg.name', val('f-name'));
+      add('msg.company', val('f-company'));
+      add('msg.email', val('f-email'));
+      add('msg.country', val('f-country'));
+      add('msg.product', val('f-product'));
+      add('msg.type', val('f-type'));
+      var req = val('f-msg');
+      if (req) lines.push('', (t('msg.req') || 'Requirement') + ':', req);
+      return lines.join('\n');
+    }
+
+    function validateAll() {
       var firstBad = null;
-      fields.forEach(function (input) {
+      $$('input, select, textarea', f).forEach(function (input) {
         if (!validate(input) && !firstBad) firstBad = input;
       });
-      if (firstBad) { firstBad.focus(); return; }
+      if (firstBad) firstBad.focus();
+      return !firstBad;
+    }
 
-      // Demo only — no data leaves the page in this concept build.
-      if (ok) ok.classList.add('show');
-      f.reset();
-      setTimeout(function () { if (ok) ok.classList.remove('show'); }, 6000);
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validateAll()) return;
+      // Opened synchronously inside the click so it isn't treated as a popup.
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(buildMessage()),
+                  '_blank', 'noopener');
     });
+
+    var copyBtn = $('#copyEnquiry');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        if (!validateAll()) return;
+        var msg = buildMessage();
+        toastShow(t('f.copied') || 'Enquiry copied', false);
+        copyText(msg).then(function () {
+          toastShow(t('f.copied') || 'Enquiry copied', false);
+        }, function () {});
+      });
+    }
   })();
 
   /* ---------------------------------------------------------------- 16. MISC */
@@ -539,60 +578,58 @@
   // on desktops without a mail client, and inside in-app browsers. The link is left
   // intact (it still works where a handler exists), but we always copy the address
   // and confirm it, so the click never appears to do nothing.
+  var toastEl = null, toastTimer = null;
+
+  function toastShow(value, copied) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'toast';
+      toastEl.setAttribute('role', 'status');
+      toastEl.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="m5 13 4 4L19 7"/></svg><span></span>';
+      document.body.appendChild(toastEl);
+    }
+    var label = toastEl.querySelector('span');
+    label.innerHTML = '';
+    if (copied) label.appendChild(document.createTextNode((t('toast.copied') || 'Copied') + ' — '));
+    var b = document.createElement('b');
+    b.textContent = value;
+    label.appendChild(b);
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 4500);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    // Fallback for non-secure contexts (e.g. opening the file directly)
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? resolve() : reject();
+    });
+  }
+
   (function contactLinks() {
-    var links = $$('a[href^="mailto:"], a[href^="tel:"]');
-    if (!links.length) return;
-
-    var toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.setAttribute('role', 'status');
-    toast.innerHTML =
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
-      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="m5 13 4 4L19 7"/></svg><span></span>';
-    document.body.appendChild(toast);
-    var label = toast.querySelector('span');
-    var timer = null;
-
-    function show(value, copied) {
-      label.innerHTML = '';
-      if (copied) label.appendChild(document.createTextNode((t('toast.copied') || 'Copied') + ' — '));
-      var b = document.createElement('b');
-      b.textContent = value;
-      label.appendChild(b);
-      toast.classList.add('show');
-      clearTimeout(timer);
-      timer = setTimeout(function () { toast.classList.remove('show'); }, 4000);
-    }
-
-    function copy(text) {
-      if (navigator.clipboard && window.isSecureContext) {
-        return navigator.clipboard.writeText(text);
-      }
-      // Fallback for non-secure contexts (e.g. opening the file directly)
-      return new Promise(function (resolve, reject) {
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly', '');
-        ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
-        document.body.appendChild(ta);
-        ta.select();
-        var ok = false;
-        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-        document.body.removeChild(ta);
-        ok ? resolve() : reject();
-      });
-    }
-
-    links.forEach(function (a) {
+    $$('a[href^="mailto:"], a[href^="tel:"]').forEach(function (a) {
       a.addEventListener('click', function () {
         // Never preventDefault — let the mail/phone client open if there is one.
         var value = a.getAttribute('href').replace(/^(mailto:|tel:)/i, '').split('?')[0];
         // Show the address straight away. The clipboard API can reject *or hang*
-        // when the document isn't focused, so feedback must not depend on it —
-        // seeing the address is the point; copying is the bonus.
-        show(value, false);
-        copy(value).then(function () { show(value, true); }, function () {});
+        // when the document isn't focused, so feedback must not depend on it.
+        toastShow(value, false);
+        copyText(value).then(function () { toastShow(value, true); }, function () {});
       });
     });
   })();

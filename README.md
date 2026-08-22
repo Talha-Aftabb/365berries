@@ -41,8 +41,9 @@ argument, which is what makes a client say yes.
   self-qualify before contacting.
 - **Origins section** with hemisphere windows, making the "365 days" claim concrete.
 - **A process section** that sells the thing a trader actually sells: reliability.
-- **A qualifying enquiry form** — product, enquiry type, volume, format and delivery window,
-  with inline validation. Every enquiry arrives quotable.
+- **A qualifying enquiry composer** — product, enquiry type, volume, format and delivery
+  window, with inline validation. It needs no backend: it formats the answers and opens
+  WhatsApp with the message ready to send (see section 4a).
 - **Motion throughout** — masked headline reveals, scroll-linked timeline, parallax hero,
   animated counters, staggered card reveals, marquee ticker, preloader. All of it respects
   `prefers-reduced-motion`.
@@ -113,6 +114,40 @@ they will have an opinion about.
 **Before launch:** if the client wants both languages indexed separately in search, they
 need real URLs (`/es/`) and `hreflang` tags rather than a client-side toggle. That is a
 small build step, and worth quoting as part of the SEO line item.
+
+## 4a. The enquiry composer (no backend)
+
+There is no server behind this site, so the contact form does not post anywhere. Instead it
+**composes** the enquiry and hands it off:
+
+- **Send on WhatsApp** — validates the fields, formats them into a readable message and opens
+  `wa.me/34612584209` with it pre-filled. Works on desktop (WhatsApp Web) and mobile.
+- **Copy enquiry** — puts the same formatted text on the clipboard to paste into any email
+  client.
+
+The message is built in the active language, so a Spanish visitor sends David a Spanish
+enquiry. Nothing is stored, transmitted to, or logged by this site — which is also why the
+cookie policy stays accurate.
+
+This is deliberately a better fit than a form for this business: the produce trade runs on
+WhatsApp, David already lists WhatsApp as a contact method, and the enquiry lands on his
+phone rather than in a spam folder. It also keeps the qualifying questions, which a plain
+"email us" button would lose.
+
+**Phone number lives in `main.js`** as `WHATSAPP = '34612584209'` (country code, no `+`).
+
+### If the client later wants a real form
+
+Swap it for a hosted form endpoint — no backend still required:
+
+| Service | Free tier |
+|---|---|
+| Web3Forms | unlimited, just an access key |
+| Formspree | 50 submissions/month |
+| Vercel Forms / Netlify Forms | included with hosting |
+
+It is a one-line change: give the `<form>` an `action` and `method="POST"`, and remove the
+submit handler in `main.js`. Worth quoting as a small line item rather than doing for free.
 
 ## 5. The logo
 

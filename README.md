@@ -253,56 +253,49 @@ clearance either side of the centred nav.
 
 ## 5. The logo
 
-The client's current logo is a 3D cartoon bubble-letter lockup in primary yellow / red /
-blue, with photographic berries scattered around it on a square canvas.
+**The site now uses the client's own logo**, at his request — header and footer on every
+page, and the loading screen.
 
-**Three problems, in order of how much they cost:**
+The file he supplied was a 512x481 JPEG with no real transparency: the "white background"
+was a baked-in grey checkerboard plus soft grey shadows under each fruit. It was cut out by
+separating each object (the wordmark is one piece, the two red speed-marks two more, each
+fruit its own) rather than by colour-keying white, so there is no halo or checker haze, and
+anti-aliased edges were un-mixed from the white so they sit cleanly on dark backgrounds.
 
-1. **It signals the wrong market.** Bubble letters and primary colours read as consumer
-   retail — a juice brand, a market stall, a kids' snack. The buyer this site is written for
-   is committing to pallets against a spec sheet. The logo tells them "cheerful fruit
-   seller"; the site tells them "reliable trading partner". The logo wins, because it is seen
-   first.
-2. **It is the wrong shape for a website.** It is a square, stacked lockup with decoration
-   around it. A site header is a ~40px-tall horizontal strip. Scaled to fit, the word
-   "BERRIES" becomes unreadable and the berries become noise.
-3. **It will not reproduce.** Heavy outlines, drop shadows and photographic cut-outs fall
-   apart when embroidered, printed one-colour on a carton, faxed on a delivery note, or
-   shown as a 16px favicon.
+| File | Use |
+|---|---|
+| `assets/logo-wordmark-dark.webp` | "365 BERRIES" only, with a thin cream outline. For dark backgrounds — his black letter outline disappears on dark, the cream one keeps it crisp. **Used in the header and footer.** |
+| `assets/logo-wordmark.webp` | Same, no added outline. For light backgrounds (as originally designed). |
+| `assets/logo-full.webp` | Full logo with the fruit. Used on the loading screen. |
+| `*.png` | Lossless masters of the above. The WebP versions are ~5x smaller. |
 
-**What it does well, and should be kept:** the name set as `365` over `BERRIES`, and the
-idea of the four berries as the identity. Both survive into any refinement.
+The wordmark is only ~400px wide in his file — fine for the header (shown at 48px tall),
+**not enough for print, signage or a large hero**. Ask him for the original artwork
+(AI / SVG / PSD, or a large transparent PNG) from whoever designed it.
 
-### Recommendation
+Not yet swapped: the **favicon** and the **link-preview image** (`og-image.jpg`) still use
+the berry-cluster mark. Both depend on the colour choice below, so they are best redone
+once that is decided.
 
-Pitch the site with the **refined mark that is currently built in** (berry cluster +
-`365 Berries` + `FRUIT SOURCING & TRADE`). It is horizontal, legible at 32px, works in one
-colour, and matches the positioning the copy is selling.
+To switch back to the built-in mark, remove `logo-client` from the `<body>` class.
 
-Do **not** open the meeting with "your logo is wrong." Show the site, let them see the
-mark in context, and if they ask, explain it as a *format* problem rather than a taste
-problem — "we needed a horizontal version that stays readable at small sizes." That is
-true, unarguable, and leaves their pride intact. Quote the identity work as a separate
-line item.
+## 5a. Colour options (client review)
 
-If they insist on keeping the existing logo, that is their call and the site supports it.
+`colours.html` (live at `/colours`) shows the same page in three colour schemes, each with
+his logo, plus the current one for reference:
 
-### Using the client's logo instead
+| | Scheme | Idea |
+|---|---|---|
+| A | **Harbour** — navy, teal, pink | Matches his Fruit Rescue flyer; navy makes his red/yellow/blue logo pop. *Recommended.* |
+| B | **Market Fresh** — light, navy text, red, yellow | Built from his logo's own colours; logo sits on white as designed. |
+| C | **Raspberry Leaf** — forest green, raspberry | Natural, fresh, premium; the berry on the bush. |
 
-The CSS is ready. You need a **horizontal** version of their file — the square one will not
-work in the header no matter how it is scaled.
+Every option was checked for readability before it was shown: the lowest text contrast is
+5.1:1 or better in each (the standard is 4.5:1; the current scheme's lowest is 4.8:1).
 
-1. Save it as `assets/logo.svg` (or `.png`, transparent background, at least 400px wide).
-2. In `index.html`, add this inside **both** `.brand` blocks (header and footer), just
-   before `<span class="brand__txt">`:
-   ```html
-   <img class="brand__img" src="assets/logo.svg" alt="365 Berries">
-   ```
-3. Add `class="logo-client"` to the `<body>` tag.
-
-That swaps the built-in mark for theirs everywhere at once. Note their logo's black
-outlines were drawn for a white background — on the dark plum header it will need a
-light-background variant, or the header switched to cream.
+**It is a decision aid, not part of the site** — `preflight --launch` blocks on it. Once he
+picks, the scheme gets applied to the real tokens in `styles.css`, the favicon and link
+preview are regenerated to match, and `colours.html` is deleted.
 
 ## 6. Legal pages
 

@@ -227,11 +227,21 @@ body:not(.loaded){overflow:hidden}
       inside BOTH .brand blocks (header + footer), before .brand__txt
    3. add class="logo-client" to <body>
    A square/stacked logo will not work here — see README section 5.        */
-.brand__img{display:none;height:40px;width:auto;max-width:210px;object-fit:contain}
+.brand__img{display:none;height:48px;width:auto;max-width:none;object-fit:contain;
+  transition:height var(--d-mid) var(--e-out),transform var(--d-mid) var(--e-out)}
 body.logo-client .brand__img{display:block}
 body.logo-client .brand__logo,
 body.logo-client .brand__txt{display:none}
-@media (max-width:420px){body.logo-client .brand__img{height:32px;max-width:160px}}
+.header.is-stuck .brand__img{height:42px}
+.brand:hover .brand__img{transform:rotate(-2deg) scale(1.03)}
+.footer .brand__img{height:68px}
+@media (max-width:420px){body.logo-client .header .brand__img{height:40px}}
+
+/* Preloader: the client's full logo, with a gentle breathing scale */
+.loader__logo{width:min(190px,48vw);height:auto;margin-inline:auto;
+  animation:loaderBreath 1.8s ease-in-out infinite}
+@keyframes loaderBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.loader__logo{animation:none}}
 .brand__txt{display:flex;flex-direction:column;line-height:1}
 .brand__name{font-family:var(--font-display);font-size:1.28rem;letter-spacing:-.01em}
 .brand__name b{font-weight:500;color:var(--rasp-300)}

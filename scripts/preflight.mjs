@@ -91,6 +91,14 @@ for (const p of pages) dead += (read(p).match(/href="#"/g) || []).length;
 if (dead) blockers.push(`${dead} placeholder href="#" link(s) still in the markup.`);
 else passes.push('No dead placeholder links');
 
+/* ---------------------------------------------- 5b. client review pages */
+// colours.html is a decision aid for the client, not part of the site.
+if (existsSync(join(root, 'colours.html'))) {
+  const msg = 'colours.html (the colour-options review page) is still in the project.\n' +
+              '      Delete it once the client has chosen a scheme.';
+  (launch ? blockers : warnings).push(msg);
+}
+
 /* ---------------------------------------------- 6. unverified claims */
 const CLAIMS = [
   ['Certifications', 'GLOBALG.A.P. / GRASP / BRCGS / IFS Food / Organic (EU) / Sedex in index.html',

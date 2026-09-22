@@ -231,6 +231,26 @@ set `--film-crop` back to `100%` in `styles.css`. The custom controls can stay e
 **To swap the video:** change `VIDEO` and `HASH` in `main.js` (§16c) and replace
 `assets/video-poster.jpg`.
 
+## 4c. Fruit Rescue
+
+Section 08, a separate service line requested by the client: rescuing and reselling fruit
+that retailers have rejected. Linked from the header nav, the mobile menu and the footer.
+
+**The copy is the client's own**, taken from his Fruit Rescue flyer — headline, intro, the
+three stages, the five rejection causes and the "collect containers from anywhere in Europe"
+line. Unlike the rest of the site, it is not placeholder content.
+
+Two small things were **added by us and should be shown to him**: the one-line description
+under each of the three stages (the flyer only has the titles), and the gloss under "MRL
+challenges" ("Maximum residue level exceedances").
+
+The "Report a rejected load" button opens WhatsApp with a short template (product, volume,
+location, reason) in the active language. Set in `main.js` inside `applyLang`.
+
+Adding a sixth nav tab meant the full desktop header no longer fit at 1024px, so it now
+starts at **1200px**; below that the burger menu is used. Measured at 1200px: 49px
+clearance either side of the centred nav.
+
 ## 5. The logo
 
 The client's current logo is a 3D cartoon bubble-letter lockup in primary yellow / red /

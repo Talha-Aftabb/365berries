@@ -206,7 +206,7 @@ body:not(.loaded){overflow:hidden}
 /* Once the nav appears, switch to three columns so it is optically centred in
    the header rather than pushed up against the logo. Equal 1fr side columns
    keep it centred whatever the logo or CTA width. */
-@media (min-width:1024px){
+@media (min-width:1200px){
   .header__inner{
     display:grid;
     grid-template-columns:1fr auto 1fr;
@@ -245,7 +245,7 @@ body.logo-client .brand__txt{display:none}
 }
 
 .nav{display:none}
-@media (min-width:1024px){.nav{display:flex;align-items:center;gap:.25rem}}
+@media (min-width:1200px){.nav{display:flex;align-items:center;gap:.25rem}}
 .nav a{
   position:relative;padding:.55rem .9rem;border-radius:999px;
   font-size:.875rem;font-weight:500;color:rgba(247,238,242,.82);
@@ -260,9 +260,9 @@ body.logo-client .brand__txt{display:none}
 .nav a:hover::before,.nav a.is-active::before{transform:scale(1);opacity:1}
 
 .header__cta{display:none}
-@media (min-width:1024px){.header__cta{display:inline-flex;min-height:44px;padding:0 1.25rem;font-size:.875rem}}
+@media (min-width:1200px){.header__cta{display:inline-flex;min-height:44px;padding:0 1.25rem;font-size:.875rem}}
 /* Narrow desktops: buy back room either side of the centred nav. */
-@media (min-width:1024px) and (max-width:1180px){
+@media (min-width:1200px) and (max-width:1320px){
   .nav a{padding-inline:.6rem}
   .header__cta{padding:0 1rem}
 }
@@ -290,7 +290,7 @@ body.logo-client .brand__txt{display:none}
   border:1px solid rgba(255,255,255,.22);flex:none;
   transition:border-color var(--d-fast),background var(--d-fast);
 }
-@media (min-width:1024px){.burger{display:none}}
+@media (min-width:1200px){.burger{display:none}}
 .burger:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
 .burger span{
   position:absolute;top:50%;left:50%;
@@ -1047,3 +1047,70 @@ body.loaded .loader{pointer-events:none}
 .film__ctrl:hover{background:rgba(255,255,255,.14)}
 .film__ctrl:active{transform:scale(.93)}
 .film__ctrl--close:hover{background:var(--rasp-500)}
+
+/* ---------- 26. FRUIT RESCUE ---------- */
+.rescue{--bg:var(--cream-200)}
+.rescue__steps{
+  display:grid;grid-template-columns:1fr;gap:1rem;
+  margin-bottom:clamp(2.5rem,5vw,4rem);
+}
+@media (min-width:860px){.rescue__steps{grid-template-columns:repeat(3,1fr);gap:2rem}}
+.rescue__step{
+  position:relative;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.8rem 1.6rem 1.7rem;
+  transition:transform .5s var(--e-out),box-shadow .5s var(--e-out);
+}
+.rescue__step:hover{transform:translateY(-6px);box-shadow:0 22px 44px -26px rgba(26,16,19,.45)}
+/* chevron in the gap between steps, echoing the flyer's arrows */
+@media (min-width:860px){
+  .rescue__step:not(:last-child)::after{
+    content:"";position:absolute;top:50%;left:100%;
+    width:.62rem;height:.62rem;
+    border-top:2px solid var(--accent);border-right:2px solid var(--accent);
+    transform:translate(calc(1rem - 70%),-50%) rotate(45deg);
+  }
+}
+.rescue__num{
+  position:absolute;top:1.3rem;right:1.4rem;
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;color:var(--fg-muted);
+}
+.rescue__ico,.rescue__issue-ico{
+  display:grid;place-items:center;flex:none;
+  border-radius:12px;background:rgba(198,34,78,.1);color:var(--accent);
+}
+.rescue__ico{width:50px;height:50px;margin-bottom:1.1rem}
+.rescue__ico svg{width:24px;height:24px}
+.rescue__step h3{font-size:1.28rem;margin-bottom:.5rem}
+.rescue__step p{color:var(--fg-muted);font-size:.93rem}
+
+.rescue__grid{display:grid;gap:clamp(1.5rem,3vw,2.5rem);align-items:stretch}
+@media (min-width:980px){.rescue__grid{grid-template-columns:1.05fr .95fr}}
+.rescue__sub{
+  font-family:var(--font-mono);font-size:.66rem;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--fg-muted);margin-bottom:.6rem;line-height:1.5;
+}
+.rescue__issue{
+  display:flex;align-items:center;gap:1rem;
+  padding:.95rem 0;border-bottom:1px solid var(--line);
+}
+.rescue__issue:last-child{border-bottom:0}
+.rescue__issue-ico{width:42px;height:42px;border-radius:50%}
+.rescue__issue-ico svg{width:20px;height:20px}
+.rescue__issue b{display:block;font-weight:600;font-size:1.02rem}
+.rescue__issue small{display:block;font-size:.84rem;color:var(--fg-muted);margin-top:.1rem}
+
+.rescue__band{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:flex;flex-direction:column;justify-content:center;gap:1.1rem;
+  padding:clamp(2rem,4vw,3rem);border-radius:var(--radius-lg);
+  background:var(--plum-800);color:var(--fg);
+}
+.rescue__band-glow{
+  position:absolute;z-index:-1;width:120%;height:120%;right:-45%;top:-40%;
+  background:radial-gradient(closest-side,rgba(198,34,78,.55),transparent);filter:blur(30px);
+}
+.rescue__band-text{
+  font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.15rem);
+  line-height:1.2;letter-spacing:-.015em;
+}

@@ -86,6 +86,12 @@
       b.setAttribute('aria-pressed', String(on));
     });
 
+    // Fruit Rescue CTA opens WhatsApp with a short template in the active language.
+    var rescueWa = $('#rescueWa');
+    if (rescueWa) {
+      rescueWa.href = 'https://wa.me/34612584209?text=' + encodeURIComponent(t('rs.waMsg') || '');
+    }
+
     $$('.qdot').forEach(function (d) {
       d.setAttribute('aria-label', (t('a11y.dot') || 'Quote') + ' ' + d.getAttribute('data-dot'));
     });

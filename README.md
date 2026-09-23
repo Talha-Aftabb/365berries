@@ -253,49 +253,65 @@ clearance either side of the centred nav.
 
 ## 5. The logo
 
-**The site now uses the client's own logo**, at his request — header and footer on every
-page, and the loading screen.
+The site uses **the client's own logo** — the copper "365" with the burgundy-to-navy
+"BERRIES", the infinity swoosh and the two gem dots — in the header and footer of every
+page, and on the loading screen.
 
-The file he supplied was a 512x481 JPEG with no real transparency: the "white background"
-was a baked-in grey checkerboard plus soft grey shadows under each fruit. It was cut out by
-separating each object (the wordmark is one piece, the two red speed-marks two more, each
-fruit its own) rather than by colour-keying white, so there is no halo or checker haze, and
-anti-aliased edges were un-mixed from the white so they sit cleanly on dark backgrounds.
+He supplied it as a wide JPEG banner (berries either side, logo in the middle) on slightly
+grey, vignetted paper rather than clean white. It was cut out by estimating that paper
+background per pixel and keeping only ink well above the noise floor, then un-mixing the
+paper out of the soft edges. The artwork's own drop shadow is dropped deliberately —
+keeping it produced a visible dark rectangle behind the logo on dark backgrounds.
 
 | File | Use |
 |---|---|
-| `assets/logo-wordmark-dark.webp` | "365 BERRIES" only, with a thin cream outline. For dark backgrounds — his black letter outline disappears on dark, the cream one keeps it crisp. **Used in the header and footer.** |
-| `assets/logo-wordmark.webp` | Same, no added outline. For light backgrounds (as originally designed). |
-| `assets/logo-full.webp` | Full logo with the fruit. Used on the loading screen. |
-| `*.png` | Lossless masters of the above. The WebP versions are ~5x smaller. |
+| `assets/logo-wordmark-dark.webp` | Lightened version. **Header, footer, loading screen.** |
+| `assets/logo-wordmark.webp` | Original colours, for light backgrounds and print. |
+| `*.png` | Lossless masters. WebP is ~4x smaller and is what the pages load. |
 
-The wordmark is only ~400px wide in his file — fine for the header (shown at 48px tall),
-**not enough for print, signage or a large hero**. Ask him for the original artwork
-(AI / SVG / PSD, or a large transparent PNG) from whoever designed it.
+**Why the header uses a lightened version.** The right half of "BERRIES" is navy, so on the
+navy header the original would partly disappear. Rather than a flat white silhouette (which
+throws away his gradient) each colour is raised in lightness with its hue kept, so the
+copper, pink and blue are still there. Measured against the navy header, the darkest part
+of the mark sits at 5.4:1 contrast.
 
-Not yet swapped: the **favicon** and the **link-preview image** (`og-image.jpg`) still use
-the berry-cluster mark. Both depend on the colour choice below, so they are best redone
-once that is decided.
+Served at 480px wide — about 2x the largest place it appears. The original artwork is ~780px
+across, so **it is still not enough for print or signage**; ask him for the source file
+(AI/SVG/PSD) from whoever designed it.
 
-To switch back to the built-in mark, remove `logo-client` from the `<body>` class.
+The favicon is a small navy tile with the copper swoosh and the two gems, drawn as SVG to
+match the mark.
 
-## 5a. Colour options (client review)
+## 5a. Colour scheme — Harbour (approved)
 
-`colours.html` (live at `/colours`) shows the same page in three colour schemes, each with
-his logo, plus the current one for reference:
+The client chose **Option A, "Harbour"**: deep navy with teal and pink, matching his Fruit
+Rescue flyer. It is applied site-wide.
 
-| | Scheme | Idea |
-|---|---|---|
-| A | **Harbour** — navy, teal, pink | Matches his Fruit Rescue flyer; navy makes his red/yellow/blue logo pop. *Recommended.* |
-| B | **Market Fresh** — light, navy text, red, yellow | Built from his logo's own colours; logo sits on white as designed. |
-| C | **Raspberry Leaf** — forest green, raspberry | Natural, fresh, premium; the berry on the bush. |
+| Role | Colour |
+|---|---|
+| Header, hero, loading screen | `#06152A` navy |
+| Dark sections | `#0B213D` |
+| Panels (CTA, Fruit Rescue) | `#122E52` |
+| Buttons | `#D1206A` pink |
+| Labels / links on light | `#0A716C` teal |
+| Highlights on dark | `#45D6CA` teal |
+| Page / tinted section | `#F6F9FB` / `#E9F0F5` |
+| Text | `#0B1E33`, muted `#4A5B6D` |
 
-Every option was checked for readability before it was shown: the lowest text contrast is
-5.1:1 or better in each (the standard is 4.5:1; the current scheme's lowest is 4.8:1).
+Measured on the built page, the lowest text contrast is **5.1:1** (the standard is 4.5:1).
 
-**It is a decision aid, not part of the site** — `preflight --launch` blocks on it. Once he
-picks, the scheme gets applied to the real tokens in `styles.css`, the favicon and link
-preview are regenerated to match, and `colours.html` is deleted.
+**How it is wired.** The new names (`--navy-*`, `--teal-*`, `--pink-*`) are defined first and
+the old `--plum-*` / `--rasp-*` names alias them, so every existing rule kept working and
+only the values changed. A future scheme change is the same edit in one place.
+
+**Careful with CSS comments here:** a comment containing `*/` inside it (for example writing
+`--plum-*/--rasp-*`) closes the comment early and silently kills the next declaration. That
+cost a debugging round — the hero lost its background entirely.
+
+**Not changed:** the fruit colours — blueberry, strawberry, raspberry, blackberry — in the
+product cards, hero artwork and availability calendar. Those show the fruit, not the brand.
+
+The colour-options review page (`colours.html`) has been deleted now that the choice is made.
 
 ## 6. Legal pages
 

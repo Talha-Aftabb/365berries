@@ -98,7 +98,6 @@ window.I18N = {
 
     'fl.eyebrow': '05 — In the field',
     'fl.h2': 'Where it <span class="ital">starts.</span>',
-    'fl.lead': 'Half a minute in the crop. Everything else on this page — the calibres, the windows, the cold chain — exists to get this fruit to your dock in the same condition it left the field.',
     'fl.playFilm': 'Play the film',
     'fl.play': 'Play',
     'fl.pause': 'Pause',
@@ -317,7 +316,6 @@ window.I18N = {
 
     'fl.eyebrow': '05 — En el campo',
     'fl.h2': 'Donde <span class="ital">empieza todo.</span>',
-    'fl.lead': 'Medio minuto en el cultivo. Todo lo demás en esta página — los calibres, las ventanas, la cadena de frío — existe para que esta fruta llegue a tu muelle en el mismo estado en que salió del campo.',
     'fl.playFilm': 'Reproducir el vídeo',
     'fl.play': 'Reproducir',
     'fl.pause': 'Pausar',

@@ -50,7 +50,7 @@ window.I18N = {
 
     'p.eyebrow': '01 — Our lines',
     'p.h2': 'Four berries. <span class="ital">One standard.</span>',
-    'p.lead': 'We trade what we can stand behind. Every line is specified before it is offered — variety, calibre, brix, punnet format and shelf-life expectation agreed up front.',
+    'p.lead': 'We trade what we can stand behind.',
 
     'p1.name': 'Blueberries',
     'p1.desc': 'Firm, high-brix fruit with consistent calibre. Our broadest origin spread — the line that keeps programmes running through the shoulder months.',
@@ -269,7 +269,7 @@ window.I18N = {
 
     'p.eyebrow': '01 — Nuestras líneas',
     'p.h2': 'Cuatro berries. <span class="ital">Un solo estándar.</span>',
-    'p.lead': 'Comercializamos solo lo que podemos respaldar. Cada línea se especifica antes de ofertarse: variedad, calibre, grados brix, formato de tarrina y vida útil acordados de antemano.',
+    'p.lead': 'Comercializamos solo lo que podemos respaldar.',
 
     'p1.name': 'Arándanos',
     'p1.desc': 'Fruta firme, con alto brix y calibre homogéneo. Es nuestra línea con más orígenes: la que mantiene los programas en marcha durante los meses de transición.',

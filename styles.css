@@ -1176,3 +1176,17 @@ body.loaded .loader{pointer-events:none}
 @media (prefers-reduced-motion:reduce){
   .marquee--rescue{-webkit-mask-image:none;mask-image:none}
 }
+
+/* ---------- 29. FOOTER CERTIFICATION ---------- */
+.footer__certs{
+  display:flex;align-items:center;gap:clamp(1rem,3vw,1.6rem);flex-wrap:wrap;
+  padding-block:1.5rem;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.footer__certs-label{
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(238,244,250,.5);
+}
+/* shown in the supplied brand green — 6.3:1 on the navy footer, so it needs no plate */
+.footer__cert{height:44px;width:auto}
+@media (max-width:480px){.footer__cert{height:38px}}

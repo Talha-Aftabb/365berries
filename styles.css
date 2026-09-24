@@ -1156,3 +1156,23 @@ body.loaded .loader{pointer-events:none}
 }
 .drawer__nav a.nav__rescue,
 .drawer__nav a.nav__rescue::after{color:var(--teal-300)}
+
+/* ---------- 28. FRUIT RESCUE BANNER ---------- */
+/* Rescue is not berries-only, so the section carries its own moving strip of
+   the fruit handled. Runs the opposite way to the hero marquee. */
+.marquee--rescue{
+  margin:0 0 clamp(2rem,4vw,3rem);
+  border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--teal-300) 26%,transparent);
+  background:var(--navy-800);
+  padding-block:.85rem;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.marquee--rescue .marquee__track{animation-duration:30s;animation-direction:reverse}
+.marquee--rescue .marquee__item{color:color-mix(in srgb,#EEF4FA 82%,transparent)}
+.marquee--rescue .marquee__item::after{background:var(--teal-300)}
+.marquee--rescue .marquee__item--label{color:var(--teal-300);font-weight:700}
+@media (prefers-reduced-motion:reduce){
+  .marquee--rescue{-webkit-mask-image:none;mask-image:none}
+}

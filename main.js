@@ -427,13 +427,13 @@
 
   /* ---------------------------------------------------------------- 12. MARQUEE LOOP */
   (function marquee() {
-    var track = $('#marqueeTrack');
-    if (!track) return;
-    var group = track.firstElementChild;
-    if (!group) return;
-    var clone = group.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    track.appendChild(clone); // duplicate so the -50% translate loops seamlessly
+    $$('.marquee__track').forEach(function (track) {
+      var group = track.firstElementChild;
+      if (!group || track.children.length > 1) return;
+      var clone = group.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone); // duplicate so the -50% translate loops seamlessly
+    });
   })();
 
   /* ---------------------------------------------------------------- 13. QUOTES SLIDER */

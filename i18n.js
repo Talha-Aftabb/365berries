@@ -85,7 +85,7 @@ window.I18N = {
     'av.none': 'Out of window',
 
     'pr.eyebrow': '04 — How we work',
-    'pr.h2': 'From brief to <span class="ital">delivered pallet.</span>',
+    'pr.h2': 'From your request to <span class="ital">your delivery.</span>',
     'pr.lead': 'Four steps, no hand-offs. The person who prices your order is the person who tells you when it loads.',
     'pr.tag1': 'Day 0', 'pr.h1': 'Brief & specification',
     'pr.d1': 'Variety, calibre, packaging, volume, delivery window and destination. We tell you what is realistic that week — not what sounds good on a spec sheet.',
@@ -303,7 +303,7 @@ window.I18N = {
     'av.none': 'Fuera de ventana',
 
     'pr.eyebrow': '04 — Cómo trabajamos',
-    'pr.h2': 'Del pedido al <span class="ital">palé entregado.</span>',
+    'pr.h2': 'De tu solicitud a <span class="ital">tu entrega.</span>',
     'pr.lead': 'Cuatro pasos, sin traspasos. Quien te da el precio es quien te dice cuándo se carga.',
     'pr.tag1': 'Día 0', 'pr.h1': 'Pedido y especificación',
     'pr.d1': 'Variedad, calibre, envase, volumen, ventana de entrega y destino. Te decimos qué es realista esa semana, no lo que queda bien sobre el papel.',
